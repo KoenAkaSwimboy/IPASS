@@ -12,13 +12,14 @@ int main( void ){
 	auto DT = target::pin_in_out( target::pins::d4 ); 	//data in
 	auto SCK = target::pin_out( target::pins::d5 );   	//clock
 	
+	// hwlib::cout<< (((4286578686+4194304)/162530)-2*((4286578624+4194304)/162530));
 	while(true){
 		startSw.refresh();
 		if(startSw.read()){
-			// hwlib::cout<<"in de if";
 			auto weight = hx711(DT, SCK, calSw, true);
-			auto counter = weight.readCount(true);
-			hwlib::cout<<weight.calibrate(counter);
+			unsigned long skrt = weight.readCount();
+			weight.calibrate(skrt);
+			// hwlib::cout<<weight.calibrate(counter);
 			break;
 		}
 		}
