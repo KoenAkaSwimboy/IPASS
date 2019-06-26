@@ -5,7 +5,8 @@ namespace target = hwlib::target;
 class hx711{
 private:
 	unsigned long Count=0;
-	unsigned long grams=0; 
+	unsigned long grams=0;
+	unsigned long calGrams=0; 
 	long sample=0; 
 	float val=0;
 	hwlib::pin_in_out & DT;
@@ -43,19 +44,20 @@ unsigned long readCount(bool firstT){
     Count=Count^0x800000;
     SCK.write(0);
 	hwlib::cout<< "please put 10g on the weightscale and press the blue button\n";
-	while(true){
+	while(firstT){
 		if(calSw.read()){
-			return calibrate(Count);
+			calibrate(Count);
 			break;
 		}
 	}
+	return toGrams(calGrams, sample, val);
 }
 
 unsigned long toGrams(unsigned long grams, long sample, float val){
 		return(((grams-sample)/val)-2*((grams-sample)/val));	
 }
 
-unsigned long calibrate(unsigned long calGrams){
+void calibrate(unsigned long calGrams){
 	hwlib::cout <<"in calibrate\n";
 	for(int i=0; i<100; i++){
 		sample+=calGrams;
@@ -63,15 +65,15 @@ unsigned long calibrate(unsigned long calGrams){
 	sample/=100;
 	calGrams=0;
 	while(calGrams<1000){
-		calGrams=readCount();
+		calGrams=readCount(false);
 		calGrams=sample-calGrams;
 	}for(int j=0; j<100; j++){
-		calGrams=readCount();
+		calGrams=readCount(false);
 		val+=sample-calGrams;
 	}
 	val=val/100;						//gemiddelde
-	val=val/3; 						//calibratie gewicht
-	return toGrams(calGrams, sample, val);
+	val=val/10; 						//calibratie gewicht
+	// return toGrams(calGrams, sample, val);
 }
 };
 

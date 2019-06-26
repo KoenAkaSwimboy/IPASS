@@ -17,7 +17,7 @@ int main( void ){
 		if(startSw.read()){
 			// hwlib::cout<<"in de if";
 			auto weight = hx711(DT, SCK, calSw, true);
-			auto counter = weight.readCount();
+			auto counter = weight.readCount(true);
 			hwlib::cout<<weight.calibrate(counter);
 			break;
 		}
