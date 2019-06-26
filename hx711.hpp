@@ -1,18 +1,28 @@
 #include "hwlib.hpp"
 
-unsigned long readCount(void){
-	auto DT = hwlib::target::pin_in_out( hwlib::target::pins::d4 );
-	auto SCK = hwlib::target::pin_out( hwlib::target::pins::d5 );
+namespace target = hwlib::target;
+
+class hx711{
+private:
+	unsigned long Count=0;
+	unsigned long grams=0; 
+	long sample=0; 
+	float val=0;
+	hwlib::pin_in_out & DT;
+	hwlib::pin_out & SCK;
+	hwlib::pin_in & calSw;
+	bool toGramsBool=false;
+
+public:
+	hx711(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pin_in & calSw, bool toGramsBool):
+		DT( DT ),
+		SCK( SCK ),
+		calSw( calSw ),
+		toGramsBool( toGramsBool ) {}
+
+unsigned long readCount(bool firstT){
 	DT.direction_set_output();
 	DT.direction_flush();
-	
-	auto led = hwlib::target::pin_in_out( hwlib::target::pins::d8 );
-	led.direction_set_output();
-	led.direction_flush();
-	led.write(0);
-	led.flush();
-	
-    unsigned long Count=0;
     DT.write(1);
     SCK.write(0);
     DT.direction_set_input();
@@ -25,7 +35,6 @@ unsigned long readCount(void){
             SCK.write(0);
             DT.refresh();
             if(DT.read()){
-				hwlib::cout<<"please print";				//cout test
 				Count++;
             }
         }
@@ -33,9 +42,13 @@ unsigned long readCount(void){
     SCK.write(1);
     Count=Count^0x800000;
     SCK.write(0);
-	led.write(1);				//led
-	led.flush();				//test
-    return(Count);
+	hwlib::cout<< "please put 10g on the weightscale and press the blue button\n";
+	while(true){
+		if(calSw.read()){
+			return calibrate(Count);
+			break;
+		}
+	}
 }
 
 unsigned long toGrams(unsigned long grams, long sample, float val){
@@ -43,8 +56,7 @@ unsigned long toGrams(unsigned long grams, long sample, float val){
 }
 
 unsigned long calibrate(unsigned long calGrams){
-	long sample=0;
-	float val=0;
+	hwlib::cout <<"in calibrate\n";
 	for(int i=0; i<100; i++){
 		sample+=calGrams;
 	}
@@ -58,7 +70,8 @@ unsigned long calibrate(unsigned long calGrams){
 		val+=sample-calGrams;
 	}
 	val=val/100;						//gemiddelde
-	val=val/100; 						//calibratie gewicht
+	val=val/3; 						//calibratie gewicht
 	return toGrams(calGrams, sample, val);
 }
+};
 

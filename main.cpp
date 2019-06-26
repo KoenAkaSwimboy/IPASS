@@ -1,16 +1,25 @@
 #include "hwlib.hpp"
 #include "hx711.hpp"
 
+namespace target = hwlib::target;
+
 int main( void ){
-	auto led = hwlib::target::pin_in_out( hwlib::target::pins::d8 );
-	led.direction_set_output();
-	led.direction_flush();
+	hwlib::wait_ms( 1000 ); //wacht tot de terminal is gestart
+	
+
+	auto startSw = target::pin_in( target::pins::d3 );  //switch om de weegschaal aan tezetten
+	auto calSw = target::pin_in( target::pins::d2 );	//switch om de calibratie te starten
+	auto DT = target::pin_in_out( target::pins::d4 ); 	//data in
+	auto SCK = target::pin_out( target::pins::d5 );   	//clock
 	
 	while(true){
-		hwlib::cout<<"yes";
-		unsigned int test = readCount();
-		hwlib::cout<<test;
-		if(test>0){
-		led.write(1);
-		led.flush();}}
+		startSw.refresh();
+		if(startSw.read()){
+			// hwlib::cout<<"in de if";
+			auto weight = hx711(DT, SCK, calSw, true);
+			auto counter = weight.readCount();
+			hwlib::cout<<weight.calibrate(counter);
+			break;
+		}
+		}
 }
