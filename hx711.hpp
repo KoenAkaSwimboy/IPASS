@@ -8,7 +8,7 @@ private:
 	unsigned long grams=0;
 	unsigned long calGrams; 
 	unsigned long sample=0; 
-	unsigned long val=0;
+	float val=0;
 	unsigned long test=0;
 	hwlib::pin_in_out & DT;
 	hwlib::pin_out & SCK;
@@ -46,20 +46,6 @@ public:
 		return Count;
 	}
 
-	// int readWeight(){
-	// 	for(unsigned int i=0; i<50; i++){
-	// 		calGrams=readCount();							//pak de laatste waarde
-	// 		sample=calGrams+sample; 						//ken de laatste waarde toe aan sample
-	// 		hwlib::cout<<sample << " ;;;; " << val << " --- ";
-	// 	} sample/=50;
-	// 	return (sample/val);
-	// 	// calGrams=0;
-	// 	// hwlib::cout<<calGrams << " ;;;; ";
-	// 	// calGrams = readCount();
-	// 	// hwlib::cout<<calGrams << " --- ";
-	// 	// return calGrams/val;
-	// } 
-
 	void calibrate(unsigned long calGrams){
 		sample=0;
 		for(unsigned int i=0; i<100; i++){
@@ -73,28 +59,18 @@ public:
 		 	if(calSw.read()){
 				 val=0;
 				for(unsigned int j=0; j<100; j++){
-					calGrams=readCount();				//pak de laatste waarde	
-					val=calGrams+val;		//voor 100x voeg het verschil tussen de laatste waarde en het gemiddelde aan elkaar toe
-					// hwlib::cout << " calGrams: " << calGrams  << " val: " << val; 
+					calGrams=readCount();					//pak de laatste waarde	
+					val=calGrams+val;						//voor 100x voeg het verschil tussen de laatste waarde en het gemiddelde aan elkaar toe
 				}
-				val=val/100;							//bereken het gemiddelde
-				val = val - sample;						//bereken het verschil tussen het nieuwe en oude gemiddelde
-				val=val/48; 							//calibratie gewicht, antwoord hiervan staat gelijk aan 1 gram
-		hwlib::cout<<" som " << calGrams/val << " val: " << val << " calGrams " << calGrams << " /// ";
+				val=val/100;								//bereken het gemiddelde
+				val = val - sample;							//bereken het verschil tussen het nieuwe en oude gemiddelde
+				val=val/48; 								//calibratie gewicht, antwoord hiervan staat gelijk aan 1 gram
 				return;
 			 }
 		 }
 	}
 
 	unsigned long getWeight(){
-		sample=0;
-		for(unsigned int k=0; k<25; k++){
-			calGrams=readCount();
-			sample=calGrams+sample;
-			hwlib::cout<<" calGRAMSss " << calGrams <<  " SAMPLE " << sample << " ~~~ ";
-		}
-		sample/=25;
-		hwlib::cout<<sample << " --- " << val << " *** ";
-		return (sample/val);
+		return (readCount()/val);							//pak de laatste waarde en deel deze door wat gelijk staat aan 1 gram waardoor je het aantal grammen krijgt
 	}
 };

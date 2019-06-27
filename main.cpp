@@ -1,4 +1,3 @@
-#include "hwlib.hpp"
 #include "hx711.hpp"
 
 namespace target = hwlib::target;
