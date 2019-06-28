@@ -3,22 +3,15 @@
 namespace target = hwlib::target;
 
 class hx711{
-private:
-	unsigned long Count=0;
-	unsigned long grams=0;
-	unsigned long calGrams; 
-	unsigned long sample=0; 
-	float val=0;
-	unsigned long test=0;
+protected:
+	unsigned long Count;
 	hwlib::pin_in_out & DT;
 	hwlib::pin_out & SCK;
-	hwlib::pin_in & calSw;
 
 public:
-	hx711(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pin_in & calSw):
+	hx711(hwlib::pin_in_out & DT, hwlib::pin_out & SCK):
 		DT( DT ),
-		SCK( SCK ),
-		calSw( calSw ) {}
+		SCK( SCK ) {}
 
 	unsigned long readCount(){
 		DT.direction_set_output();
@@ -45,32 +38,58 @@ public:
 		SCK.write(0);
 		return Count;
 	}
+};
 
-	void calibrate(unsigned long calGrams){
-		sample=0;
-		for(unsigned int i=0; i<100; i++){
-			calGrams=readCount();							//pak de laatste waarde
-			sample=calGrams+sample; 						//ken de laatste waarde toe aan sample
+class weightScale : public hx711{
+private:
+	unsigned long avg; 
+	unsigned long oneGram;
+	hwlib::pin_in & confirmSw;
+	hwlib::pin_in & startSw;
+
+public:
+	weightScale(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pin_in & confirmSw, hwlib::pin_in & startSw):
+		hx711(DT, SCK),
+		confirmSw( confirmSw ),
+		startSw( startSw ) {}
+
+	void calibrate(){
+		avg=0;
+		for(unsigned int j=0; j<100; j++){
+			avg=readCount()+avg; 								//tel de laatste waarde toe bij avg
 		}
-		sample/=100;										//gemiddelde van 100x
+		avg/=100;													//gemiddelde van 100x
 		hwlib::cout<< "please put 48g on the weightscale and press the blue button\n";
 		while(true){
-			// calSw.refresh();
-		 	if(calSw.read()){
-				 val=0;
-				for(unsigned int j=0; j<100; j++){
-					calGrams=readCount();					//pak de laatste waarde	
-					val=calGrams+val;						//voor 100x voeg het verschil tussen de laatste waarde en het gemiddelde aan elkaar toe
+			confirmSw.refresh();
+		 	if(confirmSw.read()){
+				hwlib::cout<<"Calibrating... \n";
+				oneGram=0;
+				for(unsigned int k=0; k<100; k++){
+					oneGram=readCount()+oneGram;				//tel de laatste waarde toe bij avg
 				}
-				val=val/100;								//bereken het gemiddelde
-				val = val - sample;							//bereken het verschil tussen het nieuwe en oude gemiddelde
-				val=val/48; 								//calibratie gewicht, antwoord hiervan staat gelijk aan 1 gram
+				oneGram=oneGram/100;								//bereken het gemiddelde
+				oneGram=oneGram-avg;								//bereken het verschil tussen het nieuwe en oude gemiddelde
+				oneGram=oneGram/48; 								//calibratie gewicht, antwoord hiervan staat gelijk aan 1 gram
 				return;
 			 }
 		 }
 	}
 
 	unsigned long getWeight(){
-		return (readCount()/val);							//pak de laatste waarde en deel deze door wat gelijk staat aan 1 gram waardoor je het aantal grammen krijgt
+		return (readCount()/oneGram);							//pak de laatste waarde en deel deze door wat gelijk staat aan 1 gram waardoor je het aantal grammen krijgt
+	}
+
+	void start(){
+		while(true){
+			startSw.refresh();
+			if(startSw.read()){
+				hwlib::cout<< "Starting... \n";
+				calibrate();
+				while(true){
+					hwlib::cout<<getWeight() << " ---- ";
+				}
+			}
+		}		
 	}
 };
