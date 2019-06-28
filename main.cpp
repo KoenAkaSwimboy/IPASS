@@ -1,4 +1,4 @@
-#include "hx711.hpp"
+#include "weightscale.hpp"
 
 namespace target = hwlib::target;
 
@@ -10,7 +10,7 @@ int main( void ){
 	auto DT = target::pin_in_out( target::pins::d4 ); 				//data in
 	auto SCK = target::pin_out( target::pins::d5 );   				//clock
 
-	auto weight = weightScale(DT, SCK, calSw, startSw);				//weegschaal
+	auto weight = weightscale(DT, SCK, calSw, startSw);				//weegschaal
 
 	weight.start();
 }
