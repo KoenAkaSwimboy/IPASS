@@ -1,6 +1,7 @@
-#include "hwlib.hpp"
+#ifndef HX711_HPP
+#define HX711_HPP
 
-namespace target = hwlib::target;
+#include "hwlib.hpp"
 
 class hx711{
 protected:
@@ -9,35 +10,9 @@ protected:
 	hwlib::pin_out & SCK;
 
 public:
-	hx711(hwlib::pin_in_out & DT, hwlib::pin_out & SCK):
-		DT( DT ),
-		SCK( SCK ) {}
+	hx711(hwlib::pin_in_out & DT, hwlib::pin_out & SCK);
 
-	unsigned long readCount(){
-		DT.direction_set_output();
-		DT.direction_flush();
-		DT.write(1);
-		SCK.write(0);
-		DT.direction_set_input();
-		DT.direction_flush();
-		DT.refresh();
-		unsigned char i;
-		while(DT.read()){
-			for(i=0; i<24; i++){	
-				SCK.write(1);
-				Count = Count << 1;
-				SCK.write(0);
-				DT.refresh();
-				if(DT.read()){
-					Count++;
-				}
-			}
-		}
-		SCK.write(1);
-		Count=Count^0x800000;
-		SCK.write(0);
-		return Count;
-	}
+	unsigned long readCount();
 };
 
 class weightScale : public hx711{
@@ -48,48 +23,11 @@ private:
 	hwlib::pin_in & startSw;
 
 public:
-	weightScale(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pin_in & confirmSw, hwlib::pin_in & startSw):
-		hx711(DT, SCK),
-		confirmSw( confirmSw ),
-		startSw( startSw ) {}
+	weightScale(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pin_in & confirmSw, hwlib::pin_in & startSw);
 
-	void calibrate(){
-		avg=0;
-		for(unsigned int j=0; j<100; j++){
-			avg=readCount()+avg; 								//tel de laatste waarde toe bij avg
-		}
-		avg/=100;													//gemiddelde van 100x
-		hwlib::cout<< "please put 48g on the weightscale and press the blue button\n";
-		while(true){
-			confirmSw.refresh();
-		 	if(confirmSw.read()){
-				hwlib::cout<<"Calibrating... \n";
-				oneGram=0;
-				for(unsigned int k=0; k<100; k++){
-					oneGram=readCount()+oneGram;				//tel de laatste waarde toe bij avg
-				}
-				oneGram=oneGram/100;								//bereken het gemiddelde
-				oneGram=oneGram-avg;								//bereken het verschil tussen het nieuwe en oude gemiddelde
-				oneGram=oneGram/48; 								//calibratie gewicht, antwoord hiervan staat gelijk aan 1 gram
-				return;
-			 }
-		 }
-	}
-
-	unsigned long getWeight(){
-		return (readCount()/oneGram);							//pak de laatste waarde en deel deze door wat gelijk staat aan 1 gram waardoor je het aantal grammen krijgt
-	}
-
-	void start(){
-		while(true){
-			startSw.refresh();
-			if(startSw.read()){
-				hwlib::cout<< "Starting... \n";
-				calibrate();
-				while(true){
-					hwlib::cout<<getWeight() << " ---- ";
-				}
-			}
-		}		
-	}
+	void calibrate();
+	unsigned long getWeight();
+	void start();
 };
+
+#endif

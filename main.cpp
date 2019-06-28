@@ -1,5 +1,7 @@
 #include "hx711.hpp"
 
+namespace target = hwlib::target;
+
 int main( void ){
 	hwlib::wait_ms( 1000 ); 										//wacht tot de terminal is gestart
 
