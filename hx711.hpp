@@ -12,7 +12,7 @@ protected:
 public:
 	hx711(hwlib::pin_in_out & DT, hwlib::pin_out & SCK);
 
-	unsigned long readCount();
+	unsigned long readCount(void);
 };
 
 #endif

@@ -5,16 +5,16 @@
 
 class weightscale : public hx711::hx711{
 private:
-	unsigned long avg; 
-	unsigned long oneGram;
+	long avg; 
+	int oneGram;
 	hwlib::pin_in & confirmSw;
 	hwlib::pin_in & startSw;
 
 public:
 	weightscale(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pin_in & confirmSw, hwlib::pin_in & startSw);
 
-	void calibrate();
-	unsigned long getWeight();
+	int calibrate();
+	long getWeight(int onegram);
 	void start();
 };
 
