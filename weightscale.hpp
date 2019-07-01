@@ -9,9 +9,10 @@ private:
 	int oneGram;
 	hwlib::pin_in & confirmSw;
 	hwlib::pin_in & startSw;
+	int calWeight=0;
 
 public:
-	weightscale(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pin_in & confirmSw, hwlib::pin_in & startSw);
+	weightscale(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pin_in & confirmSw, hwlib::pin_in & startSw, int calWeight);
 
 	int calibrate();
 	long getWeight(int onegram);

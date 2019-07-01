@@ -10,7 +10,7 @@ int main( void ){
 	auto DT = target::pin_in_out( target::pins::d4 ); 				//data in
 	auto SCK = target::pin_out( target::pins::d5 );   				//clock
 
-	auto weight = weightscale(DT, SCK, calSw, startSw);				//weegschaal
+	auto weight = weightscale(DT, SCK, calSw, startSw, 40);				//weegschaal
 
 	weight.start();													//start de aplicatie
 }

@@ -1,9 +1,10 @@
 #include "weightscale.hpp"
 
-weightscale::weightscale(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pin_in & confirmSw, hwlib::pin_in & startSw):
+weightscale::weightscale(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pin_in & confirmSw, hwlib::pin_in & startSw, int calWeight):
 		hx711(DT, SCK),
 		confirmSw( confirmSw ),
-		startSw( startSw ) 
+		startSw( startSw ),
+		calWeight( calWeight ) 
         {}
 
 int weightscale::calibrate(){
@@ -13,7 +14,7 @@ int weightscale::calibrate(){
 			// hwlib::cout<<" readCount avgg: " << readCount(); 									//tel de laatste waarde toe bij avg
 		}
 		avg/=100;													//gemiddelde van 100x
-		hwlib::cout<< "please put 48g on the weightscale and press the blue button\n";
+		hwlib::cout<< "please put " << calWeight << " gram on the weightscale and press the blue button\n";
 		while(true){
 			confirmSw.refresh();
 		 	if(!confirmSw.read()){
@@ -25,7 +26,7 @@ int weightscale::calibrate(){
 				}
 				oneGram=(oneGram/100);								//bereken het gemiddelde
 				oneGram=(oneGram-avg);								//bereken het verschil tussen het nieuwe en oude gemiddelde
-				oneGram=(oneGram/48); 								//calibratie gewicht, antwoord hiervan staat gelijk aan 1 gram
+				oneGram=(oneGram/calWeight); 								//calibratie gewicht, antwoord hiervan staat gelijk aan 1 gram
 				// hwlib::cout<<" Gram: " << oneGram << '\n';
 				return oneGram;
 			 }
