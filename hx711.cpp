@@ -13,7 +13,7 @@ unsigned long hx711::readCount(void){
     DT.direction_set_input();
 	DT.direction_flush();
 	DT.refresh();
-	unsigned int i;
+	unsigned char i;
 	Count =0;
 	while(DT.read()){
 		for(i=0; i<24; i++){	

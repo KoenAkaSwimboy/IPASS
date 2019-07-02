@@ -37,13 +37,13 @@ int weightscale::calibrate(){
 	}
 
 long weightscale::getWeight(int onegram){
-	while(avg<=0 || (avg/25) < oneGram){
+	while((avg/100) < oneGram){
 		avg=0;
-		for(unsigned int l=0; l<25; l++){
+		for(unsigned int l=0; l<100; l++){
 			avg=(readCount()+avg);
 		}
 	}
-	avg/=25;
+	avg/=100;
 	return (avg/onegram);
 }
 
@@ -54,7 +54,7 @@ long weightscale::start(bool firstTime){
 			startSw.refresh();
 			if(!startSw.read()){
 				hwlib::cout<< "Starting... \n";
-				onegram = calibrate();
+				onegram = calibrate(); 
 				break;
 			}
 		}

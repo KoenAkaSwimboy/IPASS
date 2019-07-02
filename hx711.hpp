@@ -36,7 +36,7 @@ public:
 	///to 0. After this it sets DT as an input, it sets Count to 0
 	///to make sure there isn't a random value in Count. While DT
 	///is 1, pulse the clock 24 times to read the data. Return 
-	///the data.
+	///the data. this code is from the datasheet of the HX711 chip.
 	unsigned long readCount(void);
 };
 
