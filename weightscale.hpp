@@ -64,7 +64,9 @@ public:
 	///if so the function checks if the start button is being pressed.
 	///When it is pressed, calibrate the weightscale. When this is done,
 	///check if the power button is pressed, if so return -1 and close 
-	///the fuction. If not return getWeight. 
+	///the fuction. If not return getWeight. If it's not the firstime,
+	///just check if the power button is pressed, if so return -1 and if 
+	///not return getWeight.
 	long start(bool firstTime);
 };
 
