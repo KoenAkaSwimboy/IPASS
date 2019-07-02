@@ -14,7 +14,6 @@
 ///The avg, oneGram, confirmSw, startSw and calWeight components
 ///are private attributes. 
 ///The appropiate constructers and functions are provided
-
 class weightscale : public hx711::hx711{
 private:
 	long avg=0; 
@@ -60,7 +59,13 @@ public:
 
 	///\brief
 	///start the application
-	void start();
+	///\details
+	///ask the user if its the first time starting the application
+	///if so the function checks if the start button is being pressed.
+	///When it is pressed, calibrate the weightscale. When this is done,
+	///check if the power button is pressed, if so return -1 and close 
+	///the fuction. If not return getWeight. 
+	long start(bool firstTime);
 };
 
 #endif

@@ -12,15 +12,15 @@ unsigned long hx711::readCount(void){
 	SCK.write(0);
     DT.direction_set_input();
 	DT.direction_flush();
-	// DT.refresh();
-	unsigned char i;
+	DT.refresh();
+	unsigned int i;
 	Count =0;
 	while(DT.read()){
 		for(i=0; i<24; i++){	
 			SCK.write(1);
 			Count = (Count << 1);
 			SCK.write(0);
-			// DT.refresh();
+			DT.refresh();
 			if(DT.read()){
 				Count++;
 			}
@@ -29,6 +29,5 @@ unsigned long hx711::readCount(void){
 	SCK.write(1);
 	Count=(Count^0x800000);
 	SCK.write(0);
-	// hwlib::cout << " Count: " << Count;
 	return Count;
 }

@@ -3,14 +3,18 @@
 namespace target = hwlib::target;
 
 int main( void ){
-	hwlib::wait_ms( 1000 ); 										//wacht tot de terminal is gestart
+	hwlib::wait_ms( 1000 ); 										
 
-	auto startSw = target::pin_in( target::pins::d6 ); 				//switch om de weegschaal aan tezetten
-	auto calSw = target::pin_in( target::pins::d7 );				//switch om de calibratie te starten
-	auto DT = target::pin_in_out( target::pins::d4 ); 				//data in
-	auto SCK = target::pin_out( target::pins::d5 );   				//clock
+	auto startSw = target::pin_in( target::pins::d6 ); 				
+	auto calSw = target::pin_in( target::pins::d7 );				
+	auto DT = target::pin_in_out( target::pins::d4 ); 				
+	auto SCK = target::pin_out( target::pins::d5 );   				
 
-	auto weight = weightscale(DT, SCK, calSw, startSw, 40);				//weegschaal
+	auto weightScale = weightscale(DT, SCK, calSw, startSw, 250);
 
-	weight.start();													//start de aplicatie
+	long weight = weightScale.start(1);
+	while(weight>=0){
+		weight = weightScale.start(0);
+		hwlib::cout<< weight << " gram; ";
+	}												
 }

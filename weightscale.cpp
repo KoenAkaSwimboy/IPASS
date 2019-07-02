@@ -9,54 +9,59 @@ weightscale::weightscale(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pi
 
 int weightscale::calibrate(){
 		avg=0;
-		for(unsigned int j=0; j<100; j++){
-			avg=(readCount()+avg);
-			// hwlib::cout<<" readCount avgg: " << readCount(); 									//tel de laatste waarde toe bij avg
+		while(avg<=0){
+			avg=0;
+			for(unsigned int j=0; j<100; j++){
+				avg=(readCount()+avg);
+			}
 		}
-		avg/=100;													//gemiddelde van 100x
+		avg/=100;	
 		hwlib::cout<< "please put " << calWeight << " gram on the weightscale and press the blue button\n";
 		while(true){
 			confirmSw.refresh();
 		 	if(!confirmSw.read()){
 				hwlib::cout<<"Calibrating... \n";
 				oneGram=0;
-				for(unsigned int k=0; k<100; k++){
-					oneGram=(readCount()+oneGram);
-					// hwlib::cout<<" readCount oneGram: " << readCount();					//tel de laatste waarde toe bij avg
+				while(oneGram<=0 || (oneGram/100)<=avg){
+					oneGram=0;
+					for(unsigned int k=0; k<100; k++){
+						oneGram=(readCount()+oneGram);
+					}
 				}
-				oneGram=(oneGram/100);								//bereken het gemiddelde
-				oneGram=(oneGram-avg);								//bereken het verschil tussen het nieuwe en oude gemiddelde
-				oneGram=(oneGram/calWeight); 								//calibratie gewicht, antwoord hiervan staat gelijk aan 1 gram
-				// hwlib::cout<<" Gram: " << oneGram << '\n';
+				oneGram=(oneGram/100);								
+				oneGram=(oneGram-avg);								
+				oneGram=(oneGram/calWeight); 								
 				return oneGram;
 			 }
 		 }
 	}
 
 long weightscale::getWeight(int onegram){
-	for(unsigned int l=0; l<25; l++){
-		avg=(readCount()+avg);
-		// hwlib::cout<<" readCount 2e avgg: " << readCount();
-		// hwlib::cout<<readCount();
+	while(avg<=0 || (avg/25) < oneGram){
+		avg=0;
+		for(unsigned int l=0; l<25; l++){
+			avg=(readCount()+avg);
+		}
 	}
 	avg/=25;
-	// hwlib::cout<< " Getal: " << avg/oneGram;
-	return (avg/onegram);											//pak de laatste waarde en deel deze door wat gelijk staat aan 1 gram waardoor je het aantal grammen krijgt
+	return (avg/onegram);
 }
 
-void weightscale::start(){
-	while(true){
-		startSw.refresh();
-		if(!startSw.read()){
-			hwlib::cout<< "Starting... \n";
-			int onegram = calibrate();
-			while(true){
-				startSw.refresh();
-				if(!startSw.read()){									//als de aan/uit knop wordt ingedrukt kill het proces
-					return;	
-				}
-				hwlib::cout<< " getWeight: " << getWeight(onegram) << " ---- ";
+long weightscale::start(bool firstTime){
+	int onegram;
+	if(firstTime){
+		while(true){
+			startSw.refresh();
+			if(!startSw.read()){
+				hwlib::cout<< "Starting... \n";
+				onegram = calibrate();
+				break;
 			}
 		}
-	}		
+	}
+	startSw.refresh();
+	if(!startSw.read()){
+		return -1;	
+	}
+	return getWeight(onegram);	
 }
