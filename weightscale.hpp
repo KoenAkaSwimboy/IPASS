@@ -30,7 +30,7 @@ public:
 	///\details
 	///This constructor gives the DT en SCK to the class HX711
 	///and initialize the confirmSw and startSw attributes as
-	///switches (pin_in) adn initialize the calWeight attribute as
+	///switches (pin_in) and initialize the calWeight attribute as
 	///an integer. 
 	weightscale(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pin_in & confirmSw, hwlib::pin_in & startSw, int calWeight);
 
@@ -45,7 +45,7 @@ public:
 	///of the current data from the HX711 chip and allocate this
 	///to oneGram. Next it takes avg out of oneGram to get the
 	///difference between the average of '0' gram and the calibrate
-	///weight. It divide this number by the calibrate weight in grams
+	///weight. It divides this number by the calibrate weight in grams
 	///and returns this number.
 	int calibrate();
 
