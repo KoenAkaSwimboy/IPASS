@@ -1,0 +1,87 @@
+\hypertarget{classweightscale}{}\section{weightscale Class Reference}
+\label{classweightscale}\index{weightscale@{weightscale}}
+
+
+Weightscale.  
+
+
+
+
+{\ttfamily \#include $<$weightscale.\+hpp$>$}
+
+
+
+Inheritance diagram for weightscale\+:
+% FIG 0
+
+
+Collaboration diagram for weightscale\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classweightscale_af3fdbd1531f9a9e35e8ca02d52d5233d}{weightscale} (hwlib\+::pin\+\_\+in\+\_\+out \&DT, hwlib\+::pin\+\_\+out \&S\+CK, hwlib\+::pin\+\_\+in \&confirm\+Sw, hwlib\+::pin\+\_\+in \&start\+Sw, int cal\+Weight)
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+int \hyperlink{classweightscale_a37e3e26203e4036b76d2921dc7f3d25c}{calibrate} ()
+\begin{DoxyCompactList}\small\item\em Calibrate the weightscale. \end{DoxyCompactList}\item 
+long \hyperlink{classweightscale_a8ade4a94ff398976d4378d47bfa5a378}{get\+Weight} (int onegram)
+\begin{DoxyCompactList}\small\item\em Get the weight in grams. \end{DoxyCompactList}\item 
+long \hyperlink{classweightscale_acc00962ffad1671326cf059bdbb3f684}{start} (bool first\+Time)
+\begin{DoxyCompactList}\small\item\em start the application \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Weightscale. 
+
+This a weightscale that gives back the number of grams that is on the physical weightscale. This class is a subclass of the \hyperlink{classhx711}{hx711} class. The avg, one\+Gram, confirm\+Sw, start\+Sw and cal\+Weight components are private attributes. The appropiate constructers and functions are provided 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classweightscale_af3fdbd1531f9a9e35e8ca02d52d5233d}\label{classweightscale_af3fdbd1531f9a9e35e8ca02d52d5233d}} 
+\index{weightscale@{weightscale}!weightscale@{weightscale}}
+\index{weightscale@{weightscale}!weightscale@{weightscale}}
+\subsubsection{\texorpdfstring{weightscale()}{weightscale()}}
+{\footnotesize\ttfamily weightscale\+::weightscale (\begin{DoxyParamCaption}\item[{hwlib\+::pin\+\_\+in\+\_\+out \&}]{DT,  }\item[{hwlib\+::pin\+\_\+out \&}]{S\+CK,  }\item[{hwlib\+::pin\+\_\+in \&}]{confirm\+Sw,  }\item[{hwlib\+::pin\+\_\+in \&}]{start\+Sw,  }\item[{int}]{cal\+Weight }\end{DoxyParamCaption})}
+
+
+
+default constructor 
+
+This constructor gives the DT en S\+CK to the class H\+X711 and initialize the confirm\+Sw and start\+Sw attributes as switches (pin\+\_\+in) and initialize the cal\+Weight attribute as an integer. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classweightscale_a37e3e26203e4036b76d2921dc7f3d25c}\label{classweightscale_a37e3e26203e4036b76d2921dc7f3d25c}} 
+\index{weightscale@{weightscale}!calibrate@{calibrate}}
+\index{calibrate@{calibrate}!weightscale@{weightscale}}
+\subsubsection{\texorpdfstring{calibrate()}{calibrate()}}
+{\footnotesize\ttfamily int weightscale\+::calibrate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calibrate the weightscale. 
+
+This function calibrates the weightscale, first it takes the average of 100 times of the current data from the H\+X711 chip and allocate this to avg. Then it asks the user to put the calibrate weight on the weightscale. Again it takes the avarage of 100 times of the current data from the H\+X711 chip and allocate this to one\+Gram. Next it takes avg out of one\+Gram to get the difference between the average of \textquotesingle{}0\textquotesingle{} gram and the calibrate weight. It divides this number by the calibrate weight in grams and returns this number. \mbox{\Hypertarget{classweightscale_a8ade4a94ff398976d4378d47bfa5a378}\label{classweightscale_a8ade4a94ff398976d4378d47bfa5a378}} 
+\index{weightscale@{weightscale}!get\+Weight@{get\+Weight}}
+\index{get\+Weight@{get\+Weight}!weightscale@{weightscale}}
+\subsubsection{\texorpdfstring{get\+Weight()}{getWeight()}}
+{\footnotesize\ttfamily long weightscale\+::get\+Weight (\begin{DoxyParamCaption}\item[{int}]{onegram }\end{DoxyParamCaption})}
+
+
+
+Get the weight in grams. 
+
+This function takes the average of 25 times of the current data from the H\+X711 chip and devides this by one\+Gram to get the number of grams and returns this number. \mbox{\Hypertarget{classweightscale_acc00962ffad1671326cf059bdbb3f684}\label{classweightscale_acc00962ffad1671326cf059bdbb3f684}} 
+\index{weightscale@{weightscale}!start@{start}}
+\index{start@{start}!weightscale@{weightscale}}
+\subsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily long weightscale\+::start (\begin{DoxyParamCaption}\item[{bool}]{first\+Time }\end{DoxyParamCaption})}
+
+
+
+start the application 
+
+ask the user if its the first time starting the application if so the function checks if the start button is being pressed. When it is pressed, calibrate the weightscale. When this is done, check if the power button is pressed, if so return -\/1 and close the fuction. If not return get\+Weight. If it\textquotesingle{}s not the firstime, just check if the power button is pressed, if so return -\/1 and if not return get\+Weight. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{weightscale_8hpp}{weightscale.\+hpp}\item 
+weightscale.\+cpp\end{DoxyCompactItemize}

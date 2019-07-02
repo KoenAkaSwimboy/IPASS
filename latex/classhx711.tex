@@ -1,0 +1,67 @@
+\hypertarget{classhx711}{}\section{hx711 Class Reference}
+\label{classhx711}\index{hx711@{hx711}}
+
+
+H\+X711.  
+
+
+
+
+{\ttfamily \#include $<$hx711.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classhx711_a3676f13c54b3a63e36390fe48eb24b91}{hx711} (hwlib\+::pin\+\_\+in\+\_\+out \&DT, hwlib\+::pin\+\_\+out \&S\+CK)
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+unsigned long \hyperlink{classhx711_ad1d55443d9cd3d4250c48a7fcd2fac09}{read\+Count} (void)
+\begin{DoxyCompactList}\small\item\em Get the data from the chip. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhx711_a0bd9a837c0fc4a0b132f428ef721e749}\label{classhx711_a0bd9a837c0fc4a0b132f428ef721e749}} 
+unsigned long {\bfseries Count}
+\item 
+\mbox{\Hypertarget{classhx711_a0778c016e210a13294deda11ddd2caed}\label{classhx711_a0778c016e210a13294deda11ddd2caed}} 
+hwlib\+::pin\+\_\+in\+\_\+out \& {\bfseries DT}
+\item 
+\mbox{\Hypertarget{classhx711_a4c193bacb6ee392981e3fe9b3e8e2264}\label{classhx711_a4c193bacb6ee392981e3fe9b3e8e2264}} 
+hwlib\+::pin\+\_\+out \& {\bfseries S\+CK}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+H\+X711. 
+
+H\+X711 returns the data from the chip. The Count, DT and S\+CK components are protected attributes H\+X711 is the supperclass of weightscale). The appropiate constructers and functions are provided 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classhx711_a3676f13c54b3a63e36390fe48eb24b91}\label{classhx711_a3676f13c54b3a63e36390fe48eb24b91}} 
+\index{hx711@{hx711}!hx711@{hx711}}
+\index{hx711@{hx711}!hx711@{hx711}}
+\subsubsection{\texorpdfstring{hx711()}{hx711()}}
+{\footnotesize\ttfamily hx711\+::hx711 (\begin{DoxyParamCaption}\item[{hwlib\+::pin\+\_\+in\+\_\+out \&}]{DT,  }\item[{hwlib\+::pin\+\_\+out \&}]{S\+CK }\end{DoxyParamCaption})}
+
+
+
+default constructor 
+
+This consturctor initialize the DT attribute as an output and input (pin\+\_\+in\+\_\+out) and the S\+CK attribute as an output (pin\+\_\+out). 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classhx711_ad1d55443d9cd3d4250c48a7fcd2fac09}\label{classhx711_ad1d55443d9cd3d4250c48a7fcd2fac09}} 
+\index{hx711@{hx711}!read\+Count@{read\+Count}}
+\index{read\+Count@{read\+Count}!hx711@{hx711}}
+\subsubsection{\texorpdfstring{read\+Count()}{readCount()}}
+{\footnotesize\ttfamily unsigned long hx711\+::read\+Count (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get the data from the chip. 
+
+This function gets the data from the chip. The function sets DT (Data pin) as an output and sets it to 1 and the S\+CK to 0. After this it sets DT as an input, it sets Count to 0 to make sure there isn\textquotesingle{}t a random value in Count. While DT is 1, pulse the clock 24 times to read the data. Return the data. this code is from the datasheet of the H\+X711 chip. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{hx711_8hpp}{hx711.\+hpp}\item 
+hx711.\+cpp\end{DoxyCompactItemize}
