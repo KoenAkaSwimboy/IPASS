@@ -14,6 +14,8 @@
 ///The appropiate constructers and functions are provided
 class hx711{
 protected:
+	int gain=128;
+	uint8_t GAIN;
 	unsigned long Count;
 	hwlib::pin_in_out & DT;
 	hwlib::pin_out & SCK;
@@ -28,6 +30,18 @@ public:
 	///attribute as an output (pin_out).
 	hx711(hwlib::pin_in_out & DT, hwlib::pin_out & SCK);
 
+	bool isReady();
+
+	bool waitReady();
+
+	void setGain(int gain);
+	
+	void powerOn();
+
+	void powerOff();
+
+	void start(int gain);
+	
 	///\brief
 	///Get the data from the chip
 	///\details
