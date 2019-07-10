@@ -14,11 +14,15 @@
 ///The appropiate constructers and functions are provided
 class hx711{
 protected:
-	int gain=128;
+	int gain;
 	uint8_t GAIN;
+	int tries;
+	int maxT=500;				//default is 500
 	unsigned long Count;
 	hwlib::pin_in_out & DT;
 	hwlib::pin_out & SCK;
+	int times;
+	unsigned long avg;
 
 public:
 
@@ -32,13 +36,13 @@ public:
 
 	bool isReady();
 
-	bool waitReady();
+	bool waitReady(int maxT);
 
 	void setGain(int gain);
 	
 	void powerOn();
 
-	void powerOff();
+	void powerDown();
 
 	void start(int gain);
 	
@@ -51,7 +55,11 @@ public:
 	///to make sure there isn't a random value in Count. While DT
 	///is 1, pulse the clock 24 times to read the data. Return 
 	///the data. this code is from the datasheet of the HX711 chip.
-	unsigned long readCount(void);
+	unsigned long read(int maxT);
+
+	unsigned long readAvg(unsigned int times, int maxT);
+
+	int getTries();
 };
 
 #endif

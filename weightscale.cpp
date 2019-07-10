@@ -12,7 +12,7 @@ int weightscale::calibrate(){
 		while(avg<=0){
 			avg=0;
 			for(unsigned int j=0; j<100; j++){
-				avg=(readCount()+avg);
+				avg=(read(500)+avg);
 			}
 		}
 		avg/=100;	
@@ -25,7 +25,7 @@ int weightscale::calibrate(){
 				while(oneGram<=0 || (oneGram/100)<=avg){
 					oneGram=0;
 					for(unsigned int k=0; k<100; k++){
-						oneGram=(readCount()+oneGram);
+						oneGram=(read(500)+oneGram);
 					}
 				}
 				oneGram=(oneGram/100);								
@@ -40,7 +40,7 @@ long weightscale::getWeight(int onegram){
 	while((avg/100) < oneGram){
 		avg=0;
 		for(unsigned int l=0; l<100; l++){
-			avg=(readCount()+avg);
+			avg=(read(500)+avg);
 		}
 	}
 	avg/=100;
