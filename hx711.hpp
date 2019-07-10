@@ -23,6 +23,10 @@ protected:
 	hwlib::pin_out & SCK;
 	int times;
 	unsigned long avg;
+	unsigned long Tare;
+	int calWeight;
+	unsigned long readTare;
+	float scale;
 
 public:
 
@@ -36,7 +40,7 @@ public:
 
 	bool isReady();
 
-	bool waitReady(int maxT);
+	bool waitReady();
 
 	void setGain(int gain);
 	
@@ -55,11 +59,27 @@ public:
 	///to make sure there isn't a random value in Count. While DT
 	///is 1, pulse the clock 24 times to read the data. Return 
 	///the data. this code is from the datasheet of the HX711 chip.
-	unsigned long read(int maxT);
+	unsigned long read();
 
-	unsigned long readAvg(unsigned int times, int maxT);
+	unsigned long readAvg(unsigned int times);
 
-	int getTries();
+	void tare(unsigned int times);
+
+	unsigned long getData(unsigned int times);
+
+	unsigned long getWeight(unsigned int times);
+
+	unsigned long getTare();
+
+	void setTare(unsigned long TARE);
+
+	float getScale();
+
+	void setScale(float SCALE);
+
+	int getMaxT();
+
+	void setMaxT(int MAXT);
 };
 
 #endif

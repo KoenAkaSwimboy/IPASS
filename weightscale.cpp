@@ -1,67 +1,36 @@
 #include "weightscale.hpp"
 
-weightscale::weightscale(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pin_in & confirmSw, hwlib::pin_in & startSw, int calWeight):
+weightscale::weightscale(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pin_in & calibraionSw, hwlib::pin_in & startSw, int calWeight):
 		hx711(DT, SCK),
-		confirmSw( confirmSw ),
+		WEIGHTSCALE(DT, SCK),
+		calibrationSw( calibrationSw ),
 		startSw( startSw ),
-		calWeight( calWeight ) 
+		calWeight( calWeight )
         {}
 
-int weightscale::calibrate(){
-		avg=0;
-		while(avg<=0){
-			avg=0;
-			for(unsigned int j=0; j<100; j++){
-				avg=(read(500)+avg);
-			}
-		}
-		avg/=100;	
-		hwlib::cout<< "please put " << calWeight << " gram on the weightscale and press the blue button\n";
-		while(true){
-			confirmSw.refresh();
-		 	if(!confirmSw.read()){
-				hwlib::cout<<"Calibrating... \n";
-				oneGram=0;
-				while(oneGram<=0 || (oneGram/100)<=avg){
-					oneGram=0;
-					for(unsigned int k=0; k<100; k++){
-						oneGram=(read(500)+oneGram);
-					}
-				}
-				oneGram=(oneGram/100);								
-				oneGram=(oneGram-avg);								
-				oneGram=(oneGram/calWeight); 								
-				return oneGram;
-			 }
-		 }
-	}
-
-long weightscale::getWeight(int onegram){
-	while((avg/100) < oneGram){
-		avg=0;
-		for(unsigned int l=0; l<100; l++){
-			avg=(read(500)+avg);
-		}
-	}
-	avg/=100;
-	return (avg/onegram);
+void weightscale::start(int gain){
+	while(!startSw.read()); 					//wait till start switch is pressed
+	hwlib::cout<<"Starting... \n";
+	WEIGHTSCALE.start(gain);					//start the weightscale
+	hwlib::cout<<"Calibrating... \n";
+	calibrate();								//calibrate
 }
 
-long weightscale::start(bool firstTime){
-	int onegram;
-	if(firstTime){
-		while(true){
-			startSw.refresh();
-			if(!startSw.read()){
-				hwlib::cout<< "Starting... \n";
-				onegram = calibrate(); 
-				break;
-			}
-		}
-	}
-	startSw.refresh();
-	if(!startSw.read()){
-		return -1;	
-	}
-	return getWeight(onegram);	
+void weightscale::calibrate(){
+	WEIGHTSCALE.tare(times);					//read and set the tare
+	hwlib::cout<<"Please put " << calWeight << " on the weightscale and press the calibration button \n";
+	while(!calibrationSw.read());				//wait till the calibration button is pressed
+	hwlib::cout<<"Getting data... \n";
+	offset = WEIGHTSCALE.getData(times);
+	Scale = offset/calWeight;
+	setScale(Scale);
+	hwlib::cout<<"Done calibrating! \n";
+	return;
 }
+
+unsigned long weightscale::weight(){
+	return WEIGHTSCALE.getWeight(times);
+}
+
+
+

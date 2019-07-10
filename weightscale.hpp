@@ -11,27 +11,28 @@
 ///This a weightscale that gives back the number of grams that is
 ///on the physical weightscale. This class is a subclass of 
 ///the hx711 class.
-///The avg, oneGram, confirmSw, startSw and calWeight components
+///The avg, oneGram, calibrationSw, startSw and calWeight components
 ///are private attributes. 
 ///The appropiate constructers and functions are provided
 class weightscale : public hx711::hx711{
 private:
-	long avg=0; 
-	int oneGram=0;
-	hwlib::pin_in & confirmSw;
+	hx711 WEIGHTSCALE;
+	hwlib::pin_in & calibrationSw;
 	hwlib::pin_in & startSw;
-	int calWeight=0;
-
+	int calWeight;
+	int maxTries;
+	unsigned long offset;
+	unsigned int Scale;
 public:
 
 	///\brief
 	///default constructor
 	///\details
 	///This constructor gives the DT en SCK to the class HX711
-	///and initialize the confirmSw and startSw attributes as
+	///and initialize the calibrationSw and startSw attributes as
 	///switches (pin_in) and initialize the calWeight attribute as
 	///an integer. 
-	weightscale(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pin_in & confirmSw, hwlib::pin_in & startSw, int calWeight);
+	weightscale(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pin_in & calibrationSw, hwlib::pin_in & startSw, int calWeight);
 
 	///\brief
 	///Calibrate the weightscale
@@ -46,7 +47,7 @@ public:
 	///difference between the average of '0' gram and the calibrate
 	///weight. It divides this number by the calibrate weight in grams
 	///and returns this number.
-	int calibrate();
+	void calibrate();
 
 	///\brief
 	///Get the weight in grams
@@ -67,7 +68,9 @@ public:
 	///the fuction. If not return getWeight. If it's not the firstime,
 	///just check if the power button is pressed, if so return -1 and if 
 	///not return getWeight.
-	long start(bool firstTime);
+	void start(int gain);
+
+	unsigned long weight();
 };
 
 #endif
