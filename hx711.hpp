@@ -48,7 +48,7 @@ public:
 
 	void powerDown();
 
-	void start(int gain);
+	virtual void start(int gain);
 	
 	///\brief
 	///Get the data from the chip
@@ -61,13 +61,13 @@ public:
 	///the data. this code is from the datasheet of the HX711 chip.
 	unsigned long read();
 
-	unsigned long readAvg(unsigned int times);
+	unsigned long readAvg();
 
-	void tare(unsigned int times);
+	void tare();
 
-	unsigned long getData(unsigned int times);
+	unsigned long getData();
 
-	unsigned long getWeight(unsigned int times);
+	unsigned long getWeight();
 
 	unsigned long getTare();
 
@@ -76,6 +76,10 @@ public:
 	float getScale();
 
 	void setScale(float SCALE);
+
+	unsigned int getTimes();
+
+	void setTimes(int TIMES);
 
 	int getMaxT();
 

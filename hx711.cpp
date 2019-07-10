@@ -72,24 +72,24 @@ unsigned long hx711::read(){
 	return Count;
 }
 
-unsigned long hx711::readAvg(unsigned int times){				//take the avg of input times
+unsigned long hx711::readAvg(){				//take the avg of input times
 	avg=0;																//reset avg
-	for(unsigned int k=0; k<times; k++){
+	for(unsigned int k=0; k<getTimes(); k++){
 		avg+=read();
 	}
-	return avg/times;
+	return avg/getTimes();
 }
 
-void hx711::tare(unsigned int times){							//set the tare with a avg of 100 times
-	setTare(readAvg(times));
+void hx711::tare(){											//set the tare with a avg of 100 times
+	setTare(readAvg());
 }
 
-unsigned long hx711::getData(unsigned int times){				//read the avg of 100 times minus the offset
-	return readAvg(times) - getTare();
+unsigned long hx711::getData(){				//read the avg of 100 times minus the offset
+	return readAvg() - getTare();
 }
 
-unsigned long hx711::getWeight(unsigned int times) {
-	return getData(times)/getScale();
+unsigned long hx711::getWeight() {
+	return getData()/getScale();
 }
 
 unsigned long hx711::getTare(){											//get the tare
@@ -106,6 +106,14 @@ float hx711::getScale(){												//get the scale
 
 void hx711::setScale(float SCALE){										//set the scale (number thats '1 gram')
 	scale = SCALE;
+}
+
+unsigned int hx711::getTimes(){
+	return times;
+}
+
+void hx711::setTimes(int TIMES){
+	times = TIMES;
 }
 
 int hx711::getMaxT(){

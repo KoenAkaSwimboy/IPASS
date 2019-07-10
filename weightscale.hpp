@@ -23,6 +23,10 @@ private:
 	int maxTries;
 	unsigned long offset;
 	unsigned int Scale;
+	int gain;
+	unsigned int times;
+	int maxT;
+
 public:
 
 	///\brief
@@ -32,7 +36,8 @@ public:
 	///and initialize the calibrationSw and startSw attributes as
 	///switches (pin_in) and initialize the calWeight attribute as
 	///an integer. 
-	weightscale(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pin_in & calibrationSw, hwlib::pin_in & startSw, int calWeight);
+	weightscale(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pin_in & calibrationSw, 
+				hwlib::pin_in & startSw, int calWeight, unsigned int times, int maxT);
 
 	///\brief
 	///Calibrate the weightscale
@@ -48,16 +53,7 @@ public:
 	///weight. It divides this number by the calibrate weight in grams
 	///and returns this number.
 	void calibrate();
-
-	///\brief
-	///Get the weight in grams
-	///\details
-	///This function takes the average of 25 times of
-	///the current data from the HX711 chip and devides
-	///this by oneGram to get the number of grams and returns
-	///this number.
-	long getWeight(int onegram);
-
+	
 	///\brief
 	///start the application
 	///\details
@@ -68,7 +64,7 @@ public:
 	///the fuction. If not return getWeight. If it's not the firstime,
 	///just check if the power button is pressed, if so return -1 and if 
 	///not return getWeight.
-	void start(int gain);
+	void start(int gain) override;
 
 	unsigned long weight();
 };
