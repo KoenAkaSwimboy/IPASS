@@ -19,7 +19,7 @@ private:
 	int tries;
 	int maxT=500;				//default is 500
 	unsigned long Count;
-	hwlib::pin_in_out & DT;
+	hwlib::pin_in & DT;
 	hwlib::pin_out & SCK;
 	unsigned int times=100;		//default is 100
 	unsigned long avg;
@@ -36,7 +36,7 @@ public:
 	///This consturctor initialize the DT attribute as
 	///an output and input (pin_in_out) and the SCK
 	///attribute as an output (pin_out).
-	hx711(hwlib::pin_in_out & DT, hwlib::pin_out & SCK);
+	hx711(hwlib::pin_in & DT, hwlib::pin_out & SCK);
 
 	bool isReady();
 
