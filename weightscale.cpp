@@ -11,7 +11,7 @@ weightscale::weightscale(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pi
 	maxT ( maxT )
 	{}
 
-void weightscale::start(int gain){
+void weightscale::start(int gain){				//override the start function
 	while(startSw.read()); 						//wait till the start/shut down switch is pressed (pull down switch)
 	hwlib::cout<<"Starting... \n";
 	WEIGHTSCALE.start(gain);					//start the weightscale

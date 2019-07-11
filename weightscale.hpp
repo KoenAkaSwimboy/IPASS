@@ -37,7 +37,7 @@ public:
 	///switches (pin_in) and initialize the calWeight attribute as
 	///an integer. 
 	weightscale(hwlib::pin_in_out & DT, hwlib::pin_out & SCK, hwlib::pin_in & calibrationSw, 
-				hwlib::pin_in & startSw, int calWeight, unsigned int times, int maxT);
+				hwlib::pin_in & startSw, int calWeight, unsigned int times=100, int maxT=500);
 
 	///\brief
 	///Calibrate the weightscale

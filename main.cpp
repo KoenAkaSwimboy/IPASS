@@ -10,9 +10,9 @@ int main( void ){
   	auto startSw = target::pin_in( target::pins::d5 ); 				
 	auto calSw = target::pin_in( target::pins::d4 );		
 
-	weightscale weightScale = weightscale(DT, SCK, calSw, startSw, 440, 100, 500);
+	weightscale weightScale = weightscale(DT, SCK, calSw, startSw, 17, 100, 500);	//Data pin, Clock pin, Calibration button, Start button, calibration weight, times of average, maximum tries
 
-	weightScale.start(128);
+	weightScale.start(128);									//start the weightscale (gain of 128, must be 32, 64 or 128)
 
 	while(startSw.read()){									//while the start/shut down switch is not pressed print the weight (pull down switch)
 		hwlib::cout<< "Gewicht: " << weightScale.weight() << '\n';

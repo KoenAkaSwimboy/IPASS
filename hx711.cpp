@@ -9,12 +9,12 @@ bool hx711::isReady(){
 	DT.direction_set_input();
 	DT.direction_flush();
 	DT.refresh();
-	return DT.read();
+	return DT.read();							//hwlib::pin_in_out.read() return 0 when true and 1 when false
 }
 
 bool hx711::waitReady(){
 	tries=0;
-	while(!isReady() and tries<getMaxT()){
+	while(!isReady() and tries<maxT){
 		hwlib::wait_ms(1);
 		tries++;
 	}
@@ -22,12 +22,12 @@ bool hx711::waitReady(){
 }
 
 void hx711::setGain(int gain){
-	if(gain<64){								//gain 32 channel B
-		GAIN=2;
-	}else if(gain<128){							//gain 64 channel A
-		GAIN=3;
-	}else{										//gain 128 channel A
+	if(gain==128){								//gain 128 channel A
 		GAIN=1;
+	}else if(gain==64){							//gain 64 channel A
+		GAIN=3;
+	}else{										//gain 32 channel B
+		GAIN=2;
 	}
 }
 
@@ -55,36 +55,38 @@ unsigned long hx711::read(){
 	DT.direction_flush();
 	DT.refresh();
 	Count =0;
-	for(int j=0; j< 24+GAIN; j++){
-		for(unsigned char i=0; i<24; i++){	
-			SCK.write(1);
-			Count <<= 1;
-			SCK.write(0);
-			DT.refresh();
-			if(DT.read()){
-				Count++;
-			}
+	for(unsigned char i=0; i<24; i++){	
+		SCK.write(1);
+		Count <<= 1;
+		SCK.write(0);
+		DT.refresh();
+		if(!DT.read()){
+			Count++;
 		}
 	}
-	SCK.write(1);
+	for(unsigned int i=0; i<GAIN; i++){
+		SCK.write(1);
+		SCK.write(0);
+	}
 	Count=(Count^0x800000);
-	SCK.write(0);
 	return Count;
+
 }
 
-unsigned long hx711::readAvg(){				//take the avg of input times
-	avg=0;																//reset avg
-	for(unsigned int k=0; k<getTimes(); k++){
+
+unsigned long hx711::readAvg(){							//take the avg of input times
+	avg=0;												//reset avg
+	for(unsigned int k=0; k<times; k++){
 		avg+=read();
 	}
-	return avg/getTimes();
+	return avg/times;
 }
 
-void hx711::tare(){											//set the tare with a avg of 100 times
+void hx711::tare(){										//set the tare with a avg of 100 times
 	setTare(readAvg());
 }
 
-unsigned long hx711::getData(){				//read the avg of 100 times minus the offset
+unsigned long hx711::getData(){							//read the avg of 100 times minus the offset
 	return readAvg() - getTare();
 }
 
@@ -108,19 +110,10 @@ void hx711::setScale(float SCALE){										//set the scale (number thats '1 gra
 	scale = SCALE;
 }
 
-unsigned int hx711::getTimes(){
-	return times;
-}
-
 void hx711::setTimes(int TIMES){
 	times = TIMES;
-}
-
-int hx711::getMaxT(){
-	return maxT;
 }
 
 void hx711::setMaxT(int MAXT){
 	maxT = MAXT;
 }
-

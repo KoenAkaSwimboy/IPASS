@@ -13,15 +13,15 @@
 ///HX711 is the supperclass of weightscale).
 ///The appropiate constructers and functions are provided
 class hx711{
-protected:
-	int gain;
+private:
+	int gain=128;
 	uint8_t GAIN;
 	int tries;
 	int maxT=500;				//default is 500
 	unsigned long Count;
 	hwlib::pin_in_out & DT;
 	hwlib::pin_out & SCK;
-	int times;
+	unsigned int times=100;		//default is 100
 	unsigned long avg;
 	unsigned long Tare;
 	int calWeight;
@@ -77,11 +77,7 @@ public:
 
 	void setScale(float SCALE);
 
-	unsigned int getTimes();
-
 	void setTimes(int TIMES);
-
-	int getMaxT();
 
 	void setMaxT(int MAXT);
 };
