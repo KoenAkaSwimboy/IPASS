@@ -61,6 +61,8 @@ public:
 	///the data. this code is from the datasheet of the HX711 chip.
 	unsigned long read();
 
+	void nextConver();
+
 	unsigned long readAvg();
 
 	void tare();

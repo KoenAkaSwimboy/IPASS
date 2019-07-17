@@ -1,13 +1,13 @@
 #include "hx711.hpp"
 
-hx711::hx711(hwlib::pin_in & DT, hwlib::pin_out & SCK):
+hx711::hx711(hwlib::pin_in & DT, hwlib::pin_out & SCK):	//constructor
 		DT( DT ),
 		SCK( SCK ) 
         {}
 
 bool hx711::isReady(){									//check of de chip ready is
 	DT.refresh();
-	return !DT.read();									//hwlib::pin_in_out.read() return 0 when true and 1 when false
+	return !DT.read();									//the chip is ready if data pin is low (datasheet)
 }
 
 bool hx711::waitReady(){								//wait till the chip is ready
@@ -16,7 +16,7 @@ bool hx711::waitReady(){								//wait till the chip is ready
 		hwlib::wait_ms(1);
 		tries++;
 	}
-	return true;
+	return !DT.read();
 }
 
 void hx711::setGain(int gain){
@@ -47,39 +47,42 @@ void hx711::start(int gain){							//start the chip
 }
 
 unsigned long hx711::read(){							//get the data from the chip
-	while(!waitReady());								//wait till the chip is ready
+	if(!waitReady()){									//wait till the chip is ready
+		hwlib::cout<<"The chip is not ready, please try again \n";
+		return -1;
+	}
 	SCK.write(0);
 	hwlib::wait_us(1);
-	Count =0;
+	Count=0;
 	DT.refresh();
-	while(!DT.read()){
-		hwlib::cout<<" in while";
-		for(unsigned char i=0; i<24; i++){	
-			SCK.write(1);
-			hwlib::wait_us(1);
-			Count <<= 1;
-			SCK.write(0);
-			hwlib::wait_us(1);
-			DT.refresh();
-			if(!DT.read()){
-				Count++;
-				hwlib::cout<< " Count in If: " << Count;
-			}
+	for(unsigned char i=0; i<24; i++){	
+		SCK.write(1);
+		hwlib::wait_us(1);
+		Count <<= 1;
+		DT.refresh();
+		if(DT.read()){
+			Count++;
 		}
+		SCK.write(0);
+		hwlib::wait_us(1);
 	}
-	for(unsigned int i=0; i<GAIN; i++){					//make the chip ready for the next conversion
-			SCK.write(1);
-			hwlib::cout<< " Count voor 0x80: " << Count;
-			Count=(Count^0x800000);
-			hwlib::cout<<" Count na: " << Count;
-			SCK.write(0);
-		}
+	nextConver();										//make the chip ready for the next conversion (datasheet)
+	Count=(Count^0x800000);
 	hwlib::cout<<" Count: " << Count;
 	return Count;
 }
 
+void hx711::nextConver(){
+	for(unsigned int i=0; i<GAIN; i++){					//make the chip ready for the next conversion
+		SCK.write(1);
+		hwlib::wait_us(1);
+		SCK.write(0);
+		hwlib::wait_us(1);
+	}
+}
 
-unsigned long hx711::readAvg(){							//take the avg of input times
+
+unsigned long hx711::readAvg(){							//Calculate an average over several measurements
 	avg=0;												//reset avg
 	for(unsigned int k=0; k<times; k++){
 		avg+=read();
