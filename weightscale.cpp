@@ -17,6 +17,7 @@ void weightscale::start(int gain){				//override the start function
 	WEIGHTSCALE.start(gain);					//start the weightscale
 	WEIGHTSCALE.setTimes(times);				//set how many times avg dinges help
 	WEIGHTSCALE.setMaxT(maxTries);				//set the maximum tries
+	WEIGHTSCALE.setCalibrationW(calWeight);		//set the calibaration weight
 	hwlib::cout<<"Calibrating... \n";
 	calibrate();								//calibrate
 	return;
@@ -27,9 +28,7 @@ void weightscale::calibrate(){
 	hwlib::cout<<"Please put " << calWeight << " gram on the weightscale and press the calibration button \n";
 	// while(calibrationSw.read());				//wait till the calibration button is pressed (pull down switch)
 	hwlib::cout<<"Getting data... \n";
-	offset = WEIGHTSCALE.readAvg();
-	Scale = offset/calWeight;
-	setScale(Scale);
+	WEIGHTSCALE.setScale();
 	hwlib::cout<<"Done calibrating! \n";
 	return;
 }

@@ -65,7 +65,7 @@ unsigned long hx711::read(){							//get the data from the chip
 	}
 	nextConver();										//make the chip ready for the next conversion (datasheet)
 	Data=(Data^0x800000);
-	hwlib::cout<<" Data: " << Data << " - ";
+	// hwlib::cout<<" Data: " << Data << " - ";
 	return Data;
 }
 
@@ -83,6 +83,7 @@ unsigned long hx711::readAvg(){							//Calculate an average over several measur
 	for(unsigned int k=0; k<times; k++){
 		avg+=read();
 	}
+	hwlib::cout<<" AVg: " << avg/times << " - ";
 	return avg/times;
 }
 
@@ -90,16 +91,20 @@ void hx711::setTare(){									//set the tare with a avg of 100 times
 	tare = readAvg();
 }
 
-unsigned long hx711::getData(){							//read the avg of 100 times minus the offset
+unsigned long hx711::getOffset(){							//read the avg of 100 times minus the offset
 	return readAvg() - tare;
 }
 
 unsigned long hx711::getWeight() {						//getData devided through the calibration weight
-	return getData()/scale;
+	return getOffset()/scale;
 }
 
-void hx711::setScale(float SCALE){						//set the scale (number thats '1 gram')
-	scale = SCALE;
+void hx711::setScale(){						//set the scale (number thats '1 gram')
+	scale = getOffset()/calibrationWeight;
+}
+
+void hx711::setCalibrationW(float calWeight){
+	calibrationWeight = calWeight;
 }
 
 void hx711::setTimes(int TIMES){						//set the times, default is 100

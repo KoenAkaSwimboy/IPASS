@@ -27,6 +27,7 @@ private:
 	unsigned long tare;
 	int calWeight;
 	float scale;
+	float calibrationWeight;
 
 public:
 
@@ -91,7 +92,7 @@ public:
 
 	///\brief
 	///Read the avrage of 100 times minus the offset
-	unsigned long getData();
+	unsigned long getOffset();
 
 	///\brief
 	///getData() devide through the calibration weight
@@ -99,7 +100,9 @@ public:
 
 	///\brief
 	///Set the calibration weight
-	void setScale(float SCALE);
+	void setScale();
+
+	void setCalibrationW(float calWeight);
 
 	///\brief
 	///Set the amount of measurements
