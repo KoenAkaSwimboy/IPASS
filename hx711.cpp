@@ -11,12 +11,14 @@ bool hx711::isReady(){									//check of de chip ready is
 }
 
 bool hx711::waitReady(){								//wait till the chip is ready
+	bool ready = isReady();
 	tries=0;
-	while(!isReady() and tries<maxT){
+	while(!ready and tries<maxT){
+		ready = isReady();
 		hwlib::wait_ms(1);
 		tries++;
 	}
-	return !DT.read();
+	return ready;
 }
 
 void hx711::setGain(int gain){
@@ -31,14 +33,14 @@ void hx711::setGain(int gain){
 
 void hx711::powerOn(){									//turn the chip 'on' 
 	SCK.write(0);
-	hwlib::wait_us(1);
+	hwlib::wait_us(1);									//wait 1 nano second to let the clock settle
 }
 
 void hx711::powerDown(){								//power the chip down
 	SCK.write(0);
-	hwlib::wait_us(1);
+	hwlib::wait_us(1);									//wait 1 nano second to let the clock settle
 	SCK.write(1);
-	hwlib::wait_us(1);
+	hwlib::wait_us(1);									//wait 1 nano second to let the clock settle
 }
 
 void hx711::start(int gain){							//start the chip
@@ -53,34 +55,31 @@ unsigned long hx711::read(){							//get the data from the chip
 	}
 	SCK.write(0);
 	hwlib::wait_us(1);
-	Count=0;
+	Data=0;
 	DT.refresh();
 	for(unsigned char i=0; i<24; i++){	
 		SCK.write(1);
-		hwlib::wait_us(1);
-		Count <<= 1;
+		hwlib::wait_us(1);								//wait 1 nano second to let the clock settle
+		Data <<= 1;
 		DT.refresh();
 		if(DT.read()){
-			Count++;
+			Data++;
 		}
-		SCK.write(0);
-		hwlib::wait_us(1);
 	}
 	nextConver();										//make the chip ready for the next conversion (datasheet)
-	Count=(Count^0x800000);
-	hwlib::cout<<" Count: " << Count;
-	return Count;
+	Data=(Data^0x800000);
+	hwlib::cout<<" Data: " << Data << " - ";
+	return Data;
 }
 
-void hx711::nextConver(){
-	for(unsigned int i=0; i<GAIN; i++){					//make the chip ready for the next conversion
+void hx711::nextConver(){								//make the chip ready for the next conversion
+	for(unsigned int i=0; i<GAIN; i++){					
 		SCK.write(1);
-		hwlib::wait_us(1);
+		hwlib::wait_us(1);								//wait 1 nano second to let the clock settle
 		SCK.write(0);
-		hwlib::wait_us(1);
+		hwlib::wait_us(1);								//wait 1 nano second to let the clock settle
 	}
 }
-
 
 unsigned long hx711::readAvg(){							//Calculate an average over several measurements
 	avg=0;												//reset avg
@@ -95,23 +94,15 @@ void hx711::tare(){										//set the tare with a avg of 100 times
 }
 
 unsigned long hx711::getData(){							//read the avg of 100 times minus the offset
-	return readAvg() - getTare();
+	return readAvg() - Tare;
 }
 
-unsigned long hx711::getWeight() {
-	return getData()/getScale();
-}
-
-unsigned long hx711::getTare(){							//get the tare
-	return Tare;
+unsigned long hx711::getWeight() {						//getData devided through the calibration weight
+	return getData()/scale;
 }
 
 void hx711::setTare(unsigned long TARE){				//set the tare
 	Tare = TARE;
-}
-
-float hx711::getScale(){								//get the scale
-	return scale;
 }
 
 void hx711::setScale(float SCALE){						//set the scale (number thats '1 gram')

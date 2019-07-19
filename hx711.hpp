@@ -9,15 +9,14 @@
 ///HX711
 ///\details
 ///HX711 returns the data from the chip.
-///The Data, DT and SCK components are protected attributes 
-///HX711 is the supperclass of weightscale).
+///The Data, DT and SCK components are private attributes.
 ///The appropiate constructers and functions are provided
 class hx711{
 private:
 	int gain=128;
 	uint8_t GAIN;
 	int tries;
-	int maxT=500;				//default is 500
+	int maxT=1000;				//default is 1000
 	unsigned long Data;
 	hwlib::pin_in & DT;
 	hwlib::pin_out & SCK;
@@ -98,16 +97,8 @@ public:
 	unsigned long getWeight();
 
 	///\brief
-	///Get the 'empty' weight
-	unsigned long getTare();
-
-	///\brief
 	///Set the 'empty' weight
 	void setTare(unsigned long TARE);
-
-	///\brief
-	///Get the calibration weight
-	float getScale();
 
 	///\brief
 	///Set the calibration weight
