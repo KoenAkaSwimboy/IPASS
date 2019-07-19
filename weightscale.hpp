@@ -11,8 +11,8 @@
 ///This a weightscale that gives back the number of grams that is
 ///on the physical weightscale. This class is a subclass of 
 ///the hx711 class.
-///The avg, oneGram, calibrationSw, startSw and calWeight components
-///are private attributes. 
+///The calibrationSw, startSw, calWeight, maxTries, offset, Scale, gain and 
+///times components are private attributes. 
 ///The appropiate constructers and functions are provided
 class weightscale : public hx711::hx711{
 private:
@@ -20,12 +20,11 @@ private:
 	hwlib::pin_in & calibrationSw;
 	hwlib::pin_in & startSw;
 	int calWeight;
-	int maxTries;
 	unsigned long offset;
 	unsigned int Scale;
 	int gain;
 	unsigned int times;
-	int maxT;
+	int maxTries;
 
 public:
 
@@ -34,39 +33,34 @@ public:
 	///\details
 	///This constructor gives the DT en SCK to the class HX711
 	///and initialize the calibrationSw and startSw attributes as
-	///switches (pin_in) and initialize the calWeight attribute as
-	///an integer. 
+	///switches (pin_in) and initialize the calWeight and maxT attributes as
+	///an integer and the times attribute as an unsigned integer. 
 	weightscale(hwlib::pin_in & DT, hwlib::pin_out & SCK, hwlib::pin_in & calibrationSw, 
-				hwlib::pin_in & startSw, int calWeight, unsigned int times=100, int maxT=500);
+				hwlib::pin_in & startSw, int calWeight, unsigned int times=100, int maxTries=1000);
 
+	///\brief
+	///start the application
+	///\details
+	///This function does nothing until the startSw is pressed. When pressed, 
+	///it starts the HX711 chip. After, it sets the amount of measurements 
+	///and maxium of tries. Last but not least it calls the calibration function and stops.
+	void start(int gain) override;
+	
+	
 	///\brief
 	///Calibrate the weightscale
 	///\details
 	///This function calibrates the weightscale, first
-	///it takes the average of 100 times of the current data
-	///from the HX711 chip and allocate this to avg. Then it 
-	///asks the user to put the calibrate weight on the 
-	///weightscale. Again it takes the avarage of 100 times
-	///of the current data from the HX711 chip and allocate this
-	///to oneGram. Next it takes avg out of oneGram to get the
-	///difference between the average of '0' gram and the calibrate
-	///weight. It divides this number by the calibrate weight in grams
-	///and returns this number.
+	///it sets the tare weight. Then it asks the user to put the 
+	///calibrate weight on the weightscale and press the calibrationSw.
+	///When calibrationSw is pressed the function gets the offset. After this
+	///it calculates the Scale by deviding the given calWeight with the offset.
+	///At last it sets the scale and stops.
 	void calibrate();
-	
-	///\brief
-	///start the application
-	///\details
-	///ask the user if its the first time starting the application
-	///if so the function checks if the start button is being pressed.
-	///When it is pressed, calibrate the weightscale. When this is done,
-	///check if the power button is pressed, if so return -1 and close 
-	///the fuction. If not return getWeight. If it's not the firstime,
-	///just check if the power button is pressed, if so return -1 and if 
-	///not return getWeight.
-	void start(int gain) override;
 
-	unsigned long weight();
+	///\brief
+	///Return the HX711 getWeight()
+	unsigned long getWeight() override;
 };
 
 #endif

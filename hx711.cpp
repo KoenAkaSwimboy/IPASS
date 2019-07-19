@@ -10,7 +10,7 @@ bool hx711::isReady(){									//check of de chip ready is
 	return !DT.read();									//the chip is ready if data pin is low (datasheet)
 }
 
-bool hx711::waitReady(){								//wait till the chip is ready
+void hx711::waitReady(){								//wait till the chip is ready
 	bool ready = isReady();
 	tries=0;
 	while(!ready and tries<maxT){
@@ -18,7 +18,6 @@ bool hx711::waitReady(){								//wait till the chip is ready
 		hwlib::wait_ms(1);
 		tries++;
 	}
-	return ready;
 }
 
 void hx711::setGain(int gain){
@@ -49,18 +48,16 @@ void hx711::start(int gain){							//start the chip
 }
 
 unsigned long hx711::read(){							//get the data from the chip
-	if(!waitReady()){									//wait till the chip is ready
-		hwlib::cout<<"The chip is not ready, please try again \n";
-		return -1;
-	}
+	waitReady();
 	SCK.write(0);
 	hwlib::wait_us(1);
-	Data=0;
-	DT.refresh();
+	Data=0;												//make sure Data is 0
 	for(unsigned char i=0; i<24; i++){	
 		SCK.write(1);
 		hwlib::wait_us(1);								//wait 1 nano second to let the clock settle
-		Data <<= 1;
+		Data <<= 1;										//shift the bit out
+		SCK.write(0);
+		hwlib::wait_us(1);
 		DT.refresh();
 		if(DT.read()){
 			Data++;
@@ -73,7 +70,7 @@ unsigned long hx711::read(){							//get the data from the chip
 }
 
 void hx711::nextConver(){								//make the chip ready for the next conversion
-	for(unsigned int i=0; i<GAIN; i++){					
+	for(unsigned int j=0; j<GAIN; j++){					
 		SCK.write(1);
 		hwlib::wait_us(1);								//wait 1 nano second to let the clock settle
 		SCK.write(0);
@@ -89,20 +86,16 @@ unsigned long hx711::readAvg(){							//Calculate an average over several measur
 	return avg/times;
 }
 
-void hx711::tare(){										//set the tare with a avg of 100 times
-	setTare(readAvg());
+void hx711::setTare(){									//set the tare with a avg of 100 times
+	tare = readAvg();
 }
 
 unsigned long hx711::getData(){							//read the avg of 100 times minus the offset
-	return readAvg() - Tare;
+	return readAvg() - tare;
 }
 
 unsigned long hx711::getWeight() {						//getData devided through the calibration weight
 	return getData()/scale;
-}
-
-void hx711::setTare(unsigned long TARE){				//set the tare
-	Tare = TARE;
 }
 
 void hx711::setScale(float SCALE){						//set the scale (number thats '1 gram')

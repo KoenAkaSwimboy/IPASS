@@ -9,7 +9,9 @@
 ///HX711
 ///\details
 ///HX711 returns the data from the chip.
-///The Data, DT and SCK components are private attributes.
+///The gian, GAIN, tries, maxT, Data, DT, SCK, 
+///times, avg, tare, calWeight and scale
+///components are private attributes.
 ///The appropiate constructers and functions are provided
 class hx711{
 private:
@@ -22,9 +24,8 @@ private:
 	hwlib::pin_out & SCK;
 	unsigned int times=100;		//default is 100
 	unsigned long avg;
-	unsigned long Tare;
+	unsigned long tare;
 	int calWeight;
-	unsigned long readTare;
 	float scale;
 
 public:
@@ -46,7 +47,7 @@ public:
 
 	///\brief
 	///Wait till the chip is ready for retrieval
-	bool waitReady();
+	void waitReady();
 
 	///\brief
 	///Set the gain, see datasheet
@@ -86,7 +87,7 @@ public:
 
 	///\brief
 	///Take the average over several measurements and set this as the tare
-	void tare();
+	void setTare();
 
 	///\brief
 	///Read the avrage of 100 times minus the offset
@@ -94,11 +95,7 @@ public:
 
 	///\brief
 	///getData() devide through the calibration weight
-	unsigned long getWeight();
-
-	///\brief
-	///Set the 'empty' weight
-	void setTare(unsigned long TARE);
+	virtual unsigned long getWeight();
 
 	///\brief
 	///Set the calibration weight
