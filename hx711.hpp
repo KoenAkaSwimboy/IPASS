@@ -91,7 +91,7 @@ public:
 	void setTare();
 
 	///\brief
-	///Read the avrage of 100 times minus the offset
+	///Read the avrage of 'times' minus the offset
 	unsigned long getOffset();
 
 	///\brief
@@ -99,9 +99,13 @@ public:
 	virtual unsigned long getWeight();
 
 	///\brief
-	///Set the calibration weight
+	///Set the scale
+	///\details
+	///The scale is the value that is 'one gram'
 	void setScale();
 
+	///\brief
+	///Set the calibration weight
 	void setCalibrationW(float calWeight);
 
 	///\brief
