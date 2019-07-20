@@ -15,8 +15,8 @@
 ///The appropiate constructers and functions are provided
 class hx711{
 private:
-	int gain=128;
-	uint8_t GAIN;
+	int gain=128;				//defualt is 128
+	int GAIN;
 	int tries;
 	int maxT=1000;				//default is 1000
 	unsigned long Data;
@@ -35,7 +35,7 @@ public:
 	///default constructor 
 	///\details
 	///This consturctor initialize the DT attribute as
-	///an output and input (pin_in_out) and the SCK
+	///an output and input (pin_in) and the SCK
 	///attribute as an output (pin_out).
 	hx711(hwlib::pin_in & DT, hwlib::pin_out & SCK);
 
@@ -51,7 +51,10 @@ public:
 	void waitReady();
 
 	///\brief
-	///Set the gain, see datasheet
+	///Set the gain
+	///\details
+	///With every gain there is a certain amount of
+	///pulses the clock should give, see the datasheet.
 	void setGain(int gain);
 	
 	///\brief
@@ -61,7 +64,10 @@ public:
 	void powerOn();
 
 	///\brief
-	///Power the chip down, see datasheet
+	///Power the chip down
+	///\details
+	///By pulsing the clock one time, the chip enters a power down mode
+	////see datasheet.
 	void powerDown();
 
 	///\brief
@@ -73,13 +79,20 @@ public:
 	///\brief
 	///Get the data from the chip
 	///\details
-
+	///First this function checks if the chip is ready for retrival
+	///if so, for 24 times the data is shifted out. Each SCK pulse
+	///(SCK.write(1) ... SCK.write(0) is one pulse) shifts out one
+	///bit, for more information see the datasheet. When the data
+	///is shifted out, the function calls nextConver() to make the
+	///chip ready for the next conversion.
 	unsigned long read();
 
 	///\brief
 	///Make the chip ready for the next conversion
 	///\details
-	///Depending on the gain, 
+	///Depending on the gain, the clock gets a cetain amount of
+	///pulses to make the chip ready for the next conversion.
+	///see the datasheet for more information.
 	void nextConver();
 
 	///\brief
@@ -87,21 +100,27 @@ public:
 	unsigned long readAvg();
 
 	///\brief
+	///Set the tare
+	///\details
 	///Take the average over several measurements and set this as the tare
 	void setTare();
 
 	///\brief
-	///Read the avrage of 'times' minus the offset
+	///Read the avrage over several measurments minus the offset
 	unsigned long getOffset();
 
 	///\brief
-	///getData() devide through the calibration weight
+	///Get the weight in grams
+	///\details
+	///This function returns the weight in grams. It takes the offset and 
+	///devides it through the scale to get the right amount of grams.
 	virtual unsigned long getWeight();
 
 	///\brief
 	///Set the scale
 	///\details
-	///The scale is the value that is 'one gram'
+	///The scale is the value that is 'one gram'. You can get this
+	///by deviding the offset through the calibrationweight.
 	void setScale();
 
 	///\brief
