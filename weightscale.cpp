@@ -30,6 +30,7 @@ void weightscale::calibrate(){
 	hwlib::cout<<"Getting data... \n";
 	WEIGHTSCALE.setScale();
 	hwlib::cout<<"Done calibrating! \n";
+	WEIGHTSCALE.setTimes(25);
 	return;
 }
 

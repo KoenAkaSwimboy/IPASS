@@ -48,7 +48,7 @@ void hx711::start(int gain){							//start the chip
 }
 
 unsigned long hx711::read(){							//get the data from the chip
-	waitReady();
+	waitReady();										//wait till the chip is ready
 	SCK.write(0);
 	hwlib::wait_us(1);
 	Data=0;												//make sure Data is 0
@@ -87,6 +87,7 @@ unsigned long hx711::readAvg(){							//Calculate an average over several measur
 }
 
 void hx711::setTare(){									//set the tare with a avg of 100 times
+	readAvg();											//This seems to improve the tare accuratie
 	tare = readAvg();
 }
 
@@ -94,7 +95,7 @@ unsigned long hx711::getOffset(){						//read the avg of 100 times minus the off
 	return readAvg() - tare;
 }
 
-unsigned long hx711::getWeight() {						//getData devided through the calibration weight
+unsigned long hx711::getWeight() {						//getData devided through the scale ('one gram')
 	return getOffset()/scale;
 }
 
