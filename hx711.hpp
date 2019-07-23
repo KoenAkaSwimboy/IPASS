@@ -15,8 +15,8 @@
 ///The appropiate constructers and functions are provided
 class hx711{
 private:
-	int gain=128;				//defualt is 128
-	int GAIN;
+	unsigned int gain=128;		//defualt is 128
+	unsigned int GAIN;
 	int tries;
 	int maxT=1000;				//default is 1000
 	unsigned long Data;

@@ -12,13 +12,12 @@ weightscale::weightscale(hwlib::pin_in & DT, hwlib::pin_out & SCK, hwlib::pin_in
 	{}
 
 void weightscale::start(int gain){				//override the start function
-	// while(startSw.read()); 					//wait till the start/shut down switch is pressed (pull down switch)
+	while(startSw.read()); 						//wait till the start/shut down switch is pressed (pull down switch)
 	hwlib::cout<<"Starting... \n";
 	WEIGHTSCALE.start(gain);					//start the weightscale
-	WEIGHTSCALE.setTimes(times);				//set how many times avg dinges help
+	WEIGHTSCALE.setTimes(times);				//Set the amount of measurements
 	WEIGHTSCALE.setMaxT(maxTries);				//set the maximum tries
 	WEIGHTSCALE.setCalibrationW(calWeight);		//set the calibaration weight
-	hwlib::cout<<"Calibrating... \n";
 	calibrate();								//calibrate
 	return;
 }
@@ -26,8 +25,8 @@ void weightscale::start(int gain){				//override the start function
 void weightscale::calibrate(){
 	WEIGHTSCALE.setTare();						//set the tare
 	hwlib::cout<<"Please put " << calWeight << " gram on the weightscale and press the calibration button \n";
-	// while(calibrationSw.read());				//wait till the calibration button is pressed (pull down switch)
-	hwlib::cout<<"Getting data... \n";
+	while(calibrationSw.read());				//wait till the calibration button is pressed (pull down switch)
+	hwlib::cout<<"Calibrating... \n";
 	WEIGHTSCALE.setScale();
 	hwlib::cout<<"Done calibrating! \n";
 	WEIGHTSCALE.setTimes(25);
@@ -35,5 +34,9 @@ void weightscale::calibrate(){
 }
 
 unsigned long weightscale::getWeight(){
-	return WEIGHTSCALE.getWeight();
+	unsigned long weight = WEIGHTSCALE.getWeight();
+	if(weight>10000){
+		weight=0;
+	}
+	return weight;
 }

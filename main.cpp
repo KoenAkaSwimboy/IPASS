@@ -14,7 +14,7 @@ int main(void ){
 
 	weightScale.start(128);															//start the weightscale (gain of 128, must be 32, 64 or 128)
 
-	while(startSw.read()){															//while the start/shut down switch is not pressed print the weight (pull down switch)
+	while(true){
 		hwlib::cout<< "Gewicht: " << weightScale.getWeight() << '\n';
 	}
 }

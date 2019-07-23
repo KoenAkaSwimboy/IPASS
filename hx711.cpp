@@ -18,6 +18,9 @@ void hx711::waitReady(){								//wait till the chip is ready
 		hwlib::wait_ms(1);
 		tries++;
 	}
+	if(tries==maxT){									//the chip is not ready
+		hwlib::cout<<" The chip is not ready please try again";
+	}
 }
 
 void hx711::setGain(int gain){
@@ -55,7 +58,7 @@ unsigned long hx711::read(){							//get the data from the chip
 	for(unsigned char i=0; i<24; i++){	
 		SCK.write(1);
 		hwlib::wait_us(1);								//wait 1 nano second to let the clock settle
-		Data <<= 1;										//shift the bit out
+		Data<<=1;										//shift the bit out
 		SCK.write(0);
 		hwlib::wait_us(1);
 		DT.refresh();
@@ -82,7 +85,6 @@ unsigned long hx711::readAvg(){							//Calculate an average over several measur
 	for(unsigned int k=0; k<times; k++){
 		avg+=read();
 	}
-	hwlib::cout<<" AVg: " << avg/times << " - ";
 	return avg/times;
 }
 
