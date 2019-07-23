@@ -11,7 +11,7 @@ bool hx711::isReady(){									//check of de chip ready is
 }
 
 void hx711::waitReady(){								//wait till the chip is ready
-	bool ready = isReady();
+	ready = isReady();
 	tries=0;
 	while(!ready and tries<maxT){
 		ready = isReady();
@@ -36,6 +36,7 @@ void hx711::setGain(int gain){
 void hx711::powerOn(){									//turn the chip 'on' 
 	SCK.write(0);
 	hwlib::wait_us(1);									//wait 1 nano second to let the clock settle
+	on=true;
 }
 
 void hx711::powerDown(){								//power the chip down
@@ -43,6 +44,11 @@ void hx711::powerDown(){								//power the chip down
 	hwlib::wait_us(1);									//wait 1 nano second to let the clock settle
 	SCK.write(1);
 	hwlib::wait_us(1);									//wait 1 nano second to let the clock settle
+}
+
+void hx711::start(){									//default gain is 128
+	setGain(128);
+	powerOn();
 }
 
 void hx711::start(int gain){							//start the chip
@@ -72,11 +78,13 @@ unsigned long hx711::read(){							//get the data from the chip
 }
 
 void hx711::nextConver(){								//make the chip ready for the next conversion
+	next=0;
 	for(unsigned int j=0; j<GAIN; j++){					
 		SCK.write(1);
 		hwlib::wait_us(1);								//wait 1 nano second to let the clock settle
 		SCK.write(0);
 		hwlib::wait_us(1);								//wait 1 nano second to let the clock settle
+		next++;
 	}
 }
 
@@ -88,12 +96,12 @@ unsigned long hx711::readAvg(){							//Calculate an average over several measur
 	return avg/times;
 }
 
-void hx711::setTare(){									//set the tare with a avg of 100 times
+void hx711::setTare(){									//set the tare with an average over several measurements
 	readAvg();											//This seems to improve the tare accuratie
 	tare = readAvg();
 }
 
-unsigned long hx711::getOffset(){						//read the avg of 100 times minus the offset
+unsigned long hx711::getOffset(){						//read the average over several measurements times minus the offset
 	return readAvg() - tare;
 }
 
@@ -115,4 +123,34 @@ void hx711::setTimes(int TIMES){						//set the times, default is 100
 
 void hx711::setMaxT(int MAXT){							//set the maximum tries, defualt is 500
 	maxT = MAXT;
+}
+
+//next code is for testing
+
+unsigned int hx711::getGain(){
+	return gain;
+}
+
+bool hx711::getOn(){
+	return on;
+}
+
+bool hx711::getReady(){
+	return ready;
+}
+
+float hx711::getCalWeight(){
+	return calibrationWeight;
+}
+
+int hx711::getTimes(){
+	return times;
+}
+
+int hx711::getMaxT(){
+	return maxT;
+}
+
+int hx711::getNext(){
+	return next;
 }

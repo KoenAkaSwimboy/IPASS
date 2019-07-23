@@ -15,7 +15,8 @@
 ///The appropiate constructers and functions are provided
 class hx711{
 private:
-	unsigned int gain=128;		//defualt is 128
+	bool ready;
+	unsigned int gain;			//defualt is 128
 	unsigned int GAIN;
 	int tries;
 	int maxT=1000;				//default is 1000
@@ -28,6 +29,8 @@ private:
 	int calWeight;
 	float scale;
 	float calibrationWeight;
+	bool on;					//for testing
+	int next;					//for testing
 
 public:
 
@@ -69,6 +72,8 @@ public:
 	///By pulsing the clock one time, the chip enters a power down mode
 	////see datasheet.
 	void powerDown();
+
+	virtual void start();
 
 	///\brief
 	///Start the chip
@@ -134,6 +139,34 @@ public:
 	///\brief
 	///Set the maxium amount of tries
 	void setMaxT(int MAXT);
+
+	///\brief
+	///Get the gain, for testing
+	unsigned int getGain();
+
+	///\brief
+	///Get the	on, for testing
+	bool getOn();
+
+	///\brief
+	///Get the gain, for testing
+	bool getReady();
+
+	///\brief
+	///Get the gain, for testing
+	float getCalWeight();
+
+	///\brief
+	///Get the times, for testing
+	int getTimes();
+
+	///\brief
+	///Get the maxT, for testing
+	int getMaxT();
+
+	///\brief
+	///Get the next, for testing
+	int getNext();
 };
 
 #endif
