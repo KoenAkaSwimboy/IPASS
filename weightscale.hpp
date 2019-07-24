@@ -18,12 +18,15 @@ class weightscale : public hx711::hx711{
 private:
 	hx711 WEIGHTSCALE;
 	hwlib::pin_in & button;
-	float calWeight;
+	float calibrationWeight;
 	unsigned long offset;
-	unsigned int Scale;
 	int gain;
-	unsigned int times;
+	float times=100;			//default is 100
 	int maxTries;
+	unsigned long avg;
+	unsigned long tare;
+	int scale;
+	int average;
 
 public:
 
@@ -35,7 +38,7 @@ public:
 	///button (pin_in) and initialize the calWeight and maxT attributes as
 	///an integer and the times attribute as an unsigned integer. 
 	weightscale(hwlib::pin_in & DT, hwlib::pin_out & SCK, hwlib::pin_in & button, 
-				float calWeight, unsigned int times=100, int maxTries=1000);
+				float calibrationWeight, unsigned int times=100, int maxTries=1000);
 
 	///\brief
 	///start the application
@@ -58,11 +61,32 @@ public:
 	void calibrate();
 
 	///\brief
-	///Return the weight in kilograms
+	///Calculate an average of several measurements
+	unsigned long readAvg();
+
+	///\brief
+	///Set the tare
 	///\details
-	///Get the weight from the HX711 getWeight() function. That function returns a
-	///float, hwlib::cout can't print a float so this function rounds up the numbers.
-	float getWeight() override;
+	///Take the average of several measurements and set this as the tare
+	void setTare();
+
+	///\brief
+	///Read the average of several measurments minus the offset
+	int getOffset();
+
+	///\brief
+	///Get the weight in grams
+	///\details
+	///This function returns the weight in kilograms. It takes the offset and 
+	///devides it through the scale to get the right amount of kilograms.
+	int getWeight();
+
+	///\brief
+	///Set the scale
+	///\details
+	///The scale is the value that is 'one kilogram'. You can get this
+	///by dividing the offset through the calibration weight.
+	void setScale();
 };
 
 #endif

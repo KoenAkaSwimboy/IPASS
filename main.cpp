@@ -15,6 +15,6 @@ int main(void ){
 
 	while(true){
 		int weight=weightScale.getWeight();
-		hwlib::cout<< " Weight: " << weight << " kg\n";
+		hwlib::cout<< "Weight: " << weight << " kg\n";
 	}
 }

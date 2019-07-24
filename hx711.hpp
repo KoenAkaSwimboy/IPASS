@@ -23,12 +23,6 @@ private:
 	unsigned long Data;
 	hwlib::pin_in & DT;
 	hwlib::pin_out & SCK;
-	float times=100;			//default is 100
-	unsigned long avg;
-	unsigned long tare;
-	int calWeight;
-	float scale;
-	float calibrationWeight;
 
 public:
 
@@ -65,13 +59,6 @@ public:
 	void powerOn();
 
 	///\brief
-	///Power the chip down
-	///\details
-	///By pulsing the clock one time, the chip enters a power down mode
-	////see datasheet.
-	void powerDown();
-
-	///\brief
 	///Start the chip
 	///\details
 	///First set the gain to 128, then turn the chip on.
@@ -101,42 +88,6 @@ public:
 	///pulses to make the chip ready for the next conversion.
 	///see the datasheet for more information.
 	void nextConver();
-
-	///\brief
-	///Calculate an average of several measurements
-	unsigned long readAvg();
-
-	///\brief
-	///Set the tare
-	///\details
-	///Take the average of several measurements and set this as the tare
-	void setTare();
-
-	///\brief
-	///Read the average of several measurments minus the offset
-	int getOffset();
-
-	///\brief
-	///Get the weight in grams
-	///\details
-	///This function returns the weight in grams. It takes the offset and 
-	///devides it through the scale to get the right amount of grams.
-	virtual float getWeight();
-
-	///\brief
-	///Set the scale
-	///\details
-	///The scale is the value that is 'one kilogram'. You can get this
-	///by dividing the offset through the calibration weight.
-	void setScale();
-
-	///\brief
-	///Set the calibration weight
-	void setCalibrationW(float calWeight);
-
-	///\brief
-	///Set the amount of measurements
-	void setTimes(int TIMES);
 
 	///\brief
 	///Set the maximum amount of tries

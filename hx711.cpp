@@ -38,13 +38,6 @@ void hx711::powerOn(){									//turn the chip 'on'
 	hwlib::wait_us(1);									//wait 1 nano second to let the clock settle
 }
 
-void hx711::powerDown(){								//power the chip down
-	SCK.write(0);
-	hwlib::wait_us(1);									//wait 1 nano second to let the clock settle
-	SCK.write(1);
-	hwlib::wait_us(1);									//wait 1 nano second to let the clock settle
-}
-
 void hx711::start(){									//default gain is 128
 	setGain(128);
 	powerOn();
@@ -83,41 +76,6 @@ void hx711::nextConver(){								//make the chip ready for the next conversion
 		SCK.write(0);
 		hwlib::wait_us(1);								//wait 1 nano second to let the clock settle
 	}
-}
-
-unsigned long hx711::readAvg(){							//Calculate an average over several measurements
-	avg=0;												//reset avg
-	for(unsigned int k=0; k<times; k++){
-		avg+=read();
-	}
-	int test = avg/times;
-	hwlib::cout<<"Avg: " << test;
-	return test;
-}
-
-void hx711::setTare(){									//set the tare with an average over several measurements
-	readAvg();											//This seems to improve the tare accuratie
-	tare = readAvg();
-}
-
-int hx711::getOffset(){									//read the average over several measurements times minus the offset
-	return readAvg() - tare;
-}
-
-float hx711::getWeight() {								//getData devided through the scale ('one gram')
-	return getOffset()/scale;
-}
-
-void hx711::setScale(){									//set the scale (number thats '1 kilogram')
-	scale = getOffset()/calibrationWeight;
-}
-
-void hx711::setCalibrationW(float calWeight){			//set the calibration weight
-	calibrationWeight = calWeight;
-}
-
-void hx711::setTimes(int TIMES){						//set the times, default is 100
-	times = TIMES;
 }
 
 void hx711::setMaxT(int MAXT){							//set the maximum tries, defualt is 500
