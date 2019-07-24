@@ -23,7 +23,7 @@ private:
 	unsigned long Data;
 	hwlib::pin_in & DT;
 	hwlib::pin_out & SCK;
-	unsigned int times=100;		//default is 100
+	float times=100;			//default is 100
 	unsigned long avg;
 	unsigned long tare;
 	int calWeight;
@@ -116,14 +116,14 @@ public:
 
 	///\brief
 	///Read the avrage over several measurments minus the offset
-	unsigned long getOffset();
+	int getOffset();
 
 	///\brief
 	///Get the weight in grams
 	///\details
 	///This function returns the weight in grams. It takes the offset and 
 	///devides it through the scale to get the right amount of grams.
-	virtual unsigned long getWeight();
+	virtual float getWeight();
 
 	///\brief
 	///Set the scale

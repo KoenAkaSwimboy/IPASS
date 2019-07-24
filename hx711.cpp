@@ -93,7 +93,6 @@ unsigned long hx711::readAvg(){							//Calculate an average over several measur
 	for(unsigned int k=0; k<times; k++){
 		avg+=read();
 	}
-	hwlib::cout<<" Avg: " << avg/times<< ' ';
 	return avg/times;
 }
 
@@ -102,11 +101,11 @@ void hx711::setTare(){									//set the tare with an average over several measu
 	tare = readAvg();
 }
 
-unsigned long hx711::getOffset(){						//read the average over several measurements times minus the offset
+int hx711::getOffset(){						//read the average over several measurements times minus the offset
 	return readAvg() - tare;
 }
 
-unsigned long hx711::getWeight() {						//getData devided through the scale ('one gram')
+float hx711::getWeight() {						//getData devided through the scale ('one gram')
 	return getOffset()/scale;
 }
 
