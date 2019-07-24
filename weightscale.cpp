@@ -12,7 +12,7 @@ weightscale::weightscale(hwlib::pin_in & DT, hwlib::pin_out & SCK, hwlib::pin_in
 
 void weightscale::start(int gain){				//override the start function
 	hwlib::cout<<"Please empty the weightscale and press the button \n";
-	while(button.read()){							//wait till the button is pressed (pull down buttonitch)
+	while(button.read()){						//wait till the button is pressed (pull down buttonitch)
 		button.refresh();	
 	}; 						
 	hwlib::cout<<"Starting... \n";
@@ -27,13 +27,12 @@ void weightscale::start(int gain){				//override the start function
 void weightscale::calibrate(){
 	WEIGHTSCALE.setTare();						//set the tare
 	hwlib::cout<<"Please put the calibration weight on the weightscale and press the button \n";
-	while(button.read()){							//wait till the calibration button is pressed (pull down buttonitch)
+	while(button.read()){						//wait till the calibration button is pressed (pull down buttonitch)
 		button.refresh();
-	}				
+	}		
 	hwlib::cout<<"Calibrating... \n";
 	WEIGHTSCALE.setScale();
 	hwlib::cout<<"Done calibrating! \n";
-	WEIGHTSCALE.setTimes(25);
 	return;
 }
 

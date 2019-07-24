@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['readcount',['readCount',['../classhx711.html#ad1d55443d9cd3d4250c48a7fcd2fac09',1,'hx711']]]
+  ['isready',['isReady',['../classhx711.html#a2adbffceb80c1db7f8af74258df7c2fc',1,'hx711']]]
 ];

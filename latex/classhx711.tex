@@ -12,54 +12,180 @@ H\+X711.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classhx711_a3676f13c54b3a63e36390fe48eb24b91}{hx711} (hwlib\+::pin\+\_\+in\+\_\+out \&DT, hwlib\+::pin\+\_\+out \&S\+CK)
+\hyperlink{classhx711_a6665f2fb7a4d9e98662c24ede7c5ddab}{hx711} (hwlib\+::pin\+\_\+in \&DT, hwlib\+::pin\+\_\+out \&S\+CK)
 \begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
-unsigned long \hyperlink{classhx711_ad1d55443d9cd3d4250c48a7fcd2fac09}{read\+Count} (void)
-\begin{DoxyCompactList}\small\item\em Get the data from the chip. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Protected Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classhx711_a0bd9a837c0fc4a0b132f428ef721e749}\label{classhx711_a0bd9a837c0fc4a0b132f428ef721e749}} 
-unsigned long {\bfseries Count}
-\item 
-\mbox{\Hypertarget{classhx711_a0778c016e210a13294deda11ddd2caed}\label{classhx711_a0778c016e210a13294deda11ddd2caed}} 
-hwlib\+::pin\+\_\+in\+\_\+out \& {\bfseries DT}
-\item 
-\mbox{\Hypertarget{classhx711_a4c193bacb6ee392981e3fe9b3e8e2264}\label{classhx711_a4c193bacb6ee392981e3fe9b3e8e2264}} 
-hwlib\+::pin\+\_\+out \& {\bfseries S\+CK}
-\end{DoxyCompactItemize}
+bool \hyperlink{classhx711_a2adbffceb80c1db7f8af74258df7c2fc}{is\+Ready} ()
+\begin{DoxyCompactList}\small\item\em Check if the chip is ready for retrieval. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhx711_abb10f4013105b960ce07e52d6cefea06}\label{classhx711_abb10f4013105b960ce07e52d6cefea06}} 
+void \hyperlink{classhx711_abb10f4013105b960ce07e52d6cefea06}{wait\+Ready} ()
+\begin{DoxyCompactList}\small\item\em Wait till the chip is ready for retrieval. \end{DoxyCompactList}\item 
+void \hyperlink{classhx711_aeaaa5d42da78c5db98f98ce3f6e6cc55}{set\+Gain} (int gain)
+\begin{DoxyCompactList}\small\item\em Set the gain. \end{DoxyCompactList}\item 
+void \hyperlink{classhx711_aab22b06484907dc75d4115e7065977c0}{power\+On} ()
+\begin{DoxyCompactList}\small\item\em Power the chip. \end{DoxyCompactList}\item 
+void \hyperlink{classhx711_a3089898e9aad597a5d985ce2f8a9f5b8}{power\+Down} ()
+\begin{DoxyCompactList}\small\item\em Power the chip down. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classhx711_a2f9adaee6d128aec8ac6b9016f403203}{start} ()
+\begin{DoxyCompactList}\small\item\em Start the chip. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classhx711_aee8f8962d06e50888aa6f689c8d5fff2}{start} (int gain)
+\begin{DoxyCompactList}\small\item\em Start the chip. \end{DoxyCompactList}\item 
+unsigned long \hyperlink{classhx711_a5dc85e1232264d571512f75b6bad90d5}{read} ()
+\begin{DoxyCompactList}\small\item\em Get the data from the chip. \end{DoxyCompactList}\item 
+void \hyperlink{classhx711_adf28a62a6d06f522614694ab4df96f3f}{next\+Conver} ()
+\begin{DoxyCompactList}\small\item\em Make the chip ready for the next conversion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhx711_adba17783420dfd33e3354c259c0849a4}\label{classhx711_adba17783420dfd33e3354c259c0849a4}} 
+unsigned long \hyperlink{classhx711_adba17783420dfd33e3354c259c0849a4}{read\+Avg} ()
+\begin{DoxyCompactList}\small\item\em Calculate an average of several measurements. \end{DoxyCompactList}\item 
+void \hyperlink{classhx711_a5e40d399e913785d6e7fe7f247c6fe2a}{set\+Tare} ()
+\begin{DoxyCompactList}\small\item\em Set the tare. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhx711_aabfa5988bb6dd2e9110055ccd0064304}\label{classhx711_aabfa5988bb6dd2e9110055ccd0064304}} 
+int \hyperlink{classhx711_aabfa5988bb6dd2e9110055ccd0064304}{get\+Offset} ()
+\begin{DoxyCompactList}\small\item\em Read the average of several measurments minus the offset. \end{DoxyCompactList}\item 
+virtual float \hyperlink{classhx711_ab48ca212b0d0afb494e3f2fcbefa3985}{get\+Weight} ()
+\begin{DoxyCompactList}\small\item\em Get the weight in grams. \end{DoxyCompactList}\item 
+void \hyperlink{classhx711_a837e9ae5cc8d8f22281e2e43be139606}{set\+Scale} ()
+\begin{DoxyCompactList}\small\item\em Set the scale. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhx711_ac8ccb8783476e82401824e937735f9d2}\label{classhx711_ac8ccb8783476e82401824e937735f9d2}} 
+void \hyperlink{classhx711_ac8ccb8783476e82401824e937735f9d2}{set\+CalibrationW} (float cal\+Weight)
+\begin{DoxyCompactList}\small\item\em Set the calibration weight. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhx711_ae35d76b171adff7570a431116d4f5810}\label{classhx711_ae35d76b171adff7570a431116d4f5810}} 
+void \hyperlink{classhx711_ae35d76b171adff7570a431116d4f5810}{set\+Times} (int T\+I\+M\+ES)
+\begin{DoxyCompactList}\small\item\em Set the amount of measurements. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhx711_a6225c6fc0c76e0f1008c9500379f78b4}\label{classhx711_a6225c6fc0c76e0f1008c9500379f78b4}} 
+void \hyperlink{classhx711_a6225c6fc0c76e0f1008c9500379f78b4}{set\+MaxT} (int M\+A\+XT)
+\begin{DoxyCompactList}\small\item\em Set the maximum amount of tries. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 H\+X711. 
 
-H\+X711 returns the data from the chip. The Count, DT and S\+CK components are protected attributes H\+X711 is the supperclass of weightscale). The appropiate constructers and functions are provided 
+H\+X711 returns the data from the chip. The gain, G\+A\+IN, tries, maxT, Data, DT, S\+CK, times, avg, tare, cal\+Weight and scale components are private attributes. The appropiate constructers and functions are provided 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classhx711_a3676f13c54b3a63e36390fe48eb24b91}\label{classhx711_a3676f13c54b3a63e36390fe48eb24b91}} 
+\mbox{\Hypertarget{classhx711_a6665f2fb7a4d9e98662c24ede7c5ddab}\label{classhx711_a6665f2fb7a4d9e98662c24ede7c5ddab}} 
 \index{hx711@{hx711}!hx711@{hx711}}
 \index{hx711@{hx711}!hx711@{hx711}}
 \subsubsection{\texorpdfstring{hx711()}{hx711()}}
-{\footnotesize\ttfamily hx711\+::hx711 (\begin{DoxyParamCaption}\item[{hwlib\+::pin\+\_\+in\+\_\+out \&}]{DT,  }\item[{hwlib\+::pin\+\_\+out \&}]{S\+CK }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily hx711\+::hx711 (\begin{DoxyParamCaption}\item[{hwlib\+::pin\+\_\+in \&}]{DT,  }\item[{hwlib\+::pin\+\_\+out \&}]{S\+CK }\end{DoxyParamCaption})}
 
 
 
 default constructor 
 
-This consturctor initialize the DT attribute as an output and input (pin\+\_\+in\+\_\+out) and the S\+CK attribute as an output (pin\+\_\+out). 
+This constructor initializes the DT attribute as an input (pin\+\_\+in) and the S\+CK attribute as an output (pin\+\_\+out). 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classhx711_ad1d55443d9cd3d4250c48a7fcd2fac09}\label{classhx711_ad1d55443d9cd3d4250c48a7fcd2fac09}} 
-\index{hx711@{hx711}!read\+Count@{read\+Count}}
-\index{read\+Count@{read\+Count}!hx711@{hx711}}
-\subsubsection{\texorpdfstring{read\+Count()}{readCount()}}
-{\footnotesize\ttfamily unsigned long hx711\+::read\+Count (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classhx711_ab48ca212b0d0afb494e3f2fcbefa3985}\label{classhx711_ab48ca212b0d0afb494e3f2fcbefa3985}} 
+\index{hx711@{hx711}!get\+Weight@{get\+Weight}}
+\index{get\+Weight@{get\+Weight}!hx711@{hx711}}
+\subsubsection{\texorpdfstring{get\+Weight()}{getWeight()}}
+{\footnotesize\ttfamily float hx711\+::get\+Weight (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Get the weight in grams. 
+
+This function returns the weight in grams. It takes the offset and devides it through the scale to get the right amount of grams. \mbox{\Hypertarget{classhx711_a2adbffceb80c1db7f8af74258df7c2fc}\label{classhx711_a2adbffceb80c1db7f8af74258df7c2fc}} 
+\index{hx711@{hx711}!is\+Ready@{is\+Ready}}
+\index{is\+Ready@{is\+Ready}!hx711@{hx711}}
+\subsubsection{\texorpdfstring{is\+Ready()}{isReady()}}
+{\footnotesize\ttfamily bool hx711\+::is\+Ready (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check if the chip is ready for retrieval. 
+
+The chip is ready for retrieval when the data pin is low, see datasheet. \mbox{\Hypertarget{classhx711_adf28a62a6d06f522614694ab4df96f3f}\label{classhx711_adf28a62a6d06f522614694ab4df96f3f}} 
+\index{hx711@{hx711}!next\+Conver@{next\+Conver}}
+\index{next\+Conver@{next\+Conver}!hx711@{hx711}}
+\subsubsection{\texorpdfstring{next\+Conver()}{nextConver()}}
+{\footnotesize\ttfamily void hx711\+::next\+Conver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Make the chip ready for the next conversion. 
+
+Depending on the gain, the clock gets a certain amount of pulses to make the chip ready for the next conversion. see the datasheet for more information. \mbox{\Hypertarget{classhx711_a3089898e9aad597a5d985ce2f8a9f5b8}\label{classhx711_a3089898e9aad597a5d985ce2f8a9f5b8}} 
+\index{hx711@{hx711}!power\+Down@{power\+Down}}
+\index{power\+Down@{power\+Down}!hx711@{hx711}}
+\subsubsection{\texorpdfstring{power\+Down()}{powerDown()}}
+{\footnotesize\ttfamily void hx711\+::power\+Down (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Power the chip down. 
+
+By pulsing the clock one time, the chip enters a power down mode \mbox{\Hypertarget{classhx711_aab22b06484907dc75d4115e7065977c0}\label{classhx711_aab22b06484907dc75d4115e7065977c0}} 
+\index{hx711@{hx711}!power\+On@{power\+On}}
+\index{power\+On@{power\+On}!hx711@{hx711}}
+\subsubsection{\texorpdfstring{power\+On()}{powerOn()}}
+{\footnotesize\ttfamily void hx711\+::power\+On (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Power the chip. 
+
+To turn the chip on, S\+CK pin must be low, see datasheet \mbox{\Hypertarget{classhx711_a5dc85e1232264d571512f75b6bad90d5}\label{classhx711_a5dc85e1232264d571512f75b6bad90d5}} 
+\index{hx711@{hx711}!read@{read}}
+\index{read@{read}!hx711@{hx711}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily unsigned long hx711\+::read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
 Get the data from the chip. 
 
-This function gets the data from the chip. The function sets DT (Data pin) as an output and sets it to 1 and the S\+CK to 0. After this it sets DT as an input, it sets Count to 0 to make sure there isn\textquotesingle{}t a random value in Count. While DT is 1, pulse the clock 24 times to read the data. Return the data. this code is from the datasheet of the H\+X711 chip. 
+First this function checks if the chip is ready for retrieval if so, for 24 times the data is shifted out. Each S\+CK pulse shifts out one bit, for more information see the datasheet. When the data is shifted out, the function calls \hyperlink{classhx711_adf28a62a6d06f522614694ab4df96f3f}{next\+Conver()} to make the chip ready for the next conversion. \mbox{\Hypertarget{classhx711_aeaaa5d42da78c5db98f98ce3f6e6cc55}\label{classhx711_aeaaa5d42da78c5db98f98ce3f6e6cc55}} 
+\index{hx711@{hx711}!set\+Gain@{set\+Gain}}
+\index{set\+Gain@{set\+Gain}!hx711@{hx711}}
+\subsubsection{\texorpdfstring{set\+Gain()}{setGain()}}
+{\footnotesize\ttfamily void hx711\+::set\+Gain (\begin{DoxyParamCaption}\item[{int}]{gain }\end{DoxyParamCaption})}
+
+
+
+Set the gain. 
+
+With every gain there is a certain amount of pulses the clock should give, see the datasheet. \mbox{\Hypertarget{classhx711_a837e9ae5cc8d8f22281e2e43be139606}\label{classhx711_a837e9ae5cc8d8f22281e2e43be139606}} 
+\index{hx711@{hx711}!set\+Scale@{set\+Scale}}
+\index{set\+Scale@{set\+Scale}!hx711@{hx711}}
+\subsubsection{\texorpdfstring{set\+Scale()}{setScale()}}
+{\footnotesize\ttfamily void hx711\+::set\+Scale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set the scale. 
+
+The scale is the value that is \textquotesingle{}one kilogram\textquotesingle{}. You can get this by dividing the offset through the calibration weight. \mbox{\Hypertarget{classhx711_a5e40d399e913785d6e7fe7f247c6fe2a}\label{classhx711_a5e40d399e913785d6e7fe7f247c6fe2a}} 
+\index{hx711@{hx711}!set\+Tare@{set\+Tare}}
+\index{set\+Tare@{set\+Tare}!hx711@{hx711}}
+\subsubsection{\texorpdfstring{set\+Tare()}{setTare()}}
+{\footnotesize\ttfamily void hx711\+::set\+Tare (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set the tare. 
+
+Take the average of several measurements and set this as the tare \mbox{\Hypertarget{classhx711_a2f9adaee6d128aec8ac6b9016f403203}\label{classhx711_a2f9adaee6d128aec8ac6b9016f403203}} 
+\index{hx711@{hx711}!start@{start}}
+\index{start@{start}!hx711@{hx711}}
+\subsubsection{\texorpdfstring{start()}{start()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void hx711\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Start the chip. 
+
+First set the gain to 128, then turn the chip on. \mbox{\Hypertarget{classhx711_aee8f8962d06e50888aa6f689c8d5fff2}\label{classhx711_aee8f8962d06e50888aa6f689c8d5fff2}} 
+\index{hx711@{hx711}!start@{start}}
+\index{start@{start}!hx711@{hx711}}
+\subsubsection{\texorpdfstring{start()}{start()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void hx711\+::start (\begin{DoxyParamCaption}\item[{int}]{gain }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Start the chip. 
+
+First set the gain, then turn the chip on. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

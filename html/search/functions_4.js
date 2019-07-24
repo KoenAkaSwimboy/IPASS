@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['start',['start',['../classweightscale.html#acc00962ffad1671326cf059bdbb3f684',1,'weightscale']]]
+  ['nextconver',['nextConver',['../classhx711.html#adf28a62a6d06f522614694ab4df96f3f',1,'hx711']]]
 ];

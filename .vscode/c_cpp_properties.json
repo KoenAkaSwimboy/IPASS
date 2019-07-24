@@ -4,7 +4,8 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/home/koen/hwlib/library"
+                "/home/koen/hwlib/library",
+                "/home/koen/Catch2/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

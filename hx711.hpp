@@ -9,7 +9,7 @@
 ///HX711
 ///\details
 ///HX711 returns the data from the chip.
-///The gian, GAIN, tries, maxT, Data, DT, SCK, 
+///The gain, GAIN, tries, maxT, Data, DT, SCK, 
 ///times, avg, tare, calWeight and scale
 ///components are private attributes.
 ///The appropiate constructers and functions are provided
@@ -29,15 +29,13 @@ private:
 	int calWeight;
 	float scale;
 	float calibrationWeight;
-	bool on;					//for testing
-	int next;					//for testing
 
 public:
 
 	///\brief
 	///default constructor 
 	///\details
-	///This consturctor initialize the DT attribute as
+	///This constructor initializes the DT attribute as
 	///an input (pin_in) and the SCK
 	///attribute as an output (pin_out).
 	hx711(hwlib::pin_in & DT, hwlib::pin_out & SCK);
@@ -88,9 +86,9 @@ public:
 	///\brief
 	///Get the data from the chip
 	///\details
-	///First this function checks if the chip is ready for retrival
+	///First this function checks if the chip is ready for retrieval
 	///if so, for 24 times the data is shifted out. Each SCK pulse
-	///(SCK.write(1) ... SCK.write(0) is one pulse) shifts out one
+	///shifts out one
 	///bit, for more information see the datasheet. When the data
 	///is shifted out, the function calls nextConver() to make the
 	///chip ready for the next conversion.
@@ -99,23 +97,23 @@ public:
 	///\brief
 	///Make the chip ready for the next conversion
 	///\details
-	///Depending on the gain, the clock gets a cetain amount of
+	///Depending on the gain, the clock gets a certain amount of
 	///pulses to make the chip ready for the next conversion.
 	///see the datasheet for more information.
 	void nextConver();
 
 	///\brief
-	///Calculate an average over several measurements
+	///Calculate an average of several measurements
 	unsigned long readAvg();
 
 	///\brief
 	///Set the tare
 	///\details
-	///Take the average over several measurements and set this as the tare
+	///Take the average of several measurements and set this as the tare
 	void setTare();
 
 	///\brief
-	///Read the avrage over several measurments minus the offset
+	///Read the average of several measurments minus the offset
 	int getOffset();
 
 	///\brief
@@ -128,8 +126,8 @@ public:
 	///\brief
 	///Set the scale
 	///\details
-	///The scale is the value that is 'one gram'. You can get this
-	///by deviding the offset through the calibrationweight.
+	///The scale is the value that is 'one kilogram'. You can get this
+	///by dividing the offset through the calibration weight.
 	void setScale();
 
 	///\brief
@@ -141,36 +139,8 @@ public:
 	void setTimes(int TIMES);
 
 	///\brief
-	///Set the maxium amount of tries
+	///Set the maximum amount of tries
 	void setMaxT(int MAXT);
-
-	///\brief
-	///Get the gain, for testing
-	unsigned int getGain();
-
-	///\brief
-	///Get the	on, for testing
-	bool getOn();
-
-	///\brief
-	///Get the gain, for testing
-	bool getReady();
-
-	///\brief
-	///Get the gain, for testing
-	float getCalWeight();
-
-	///\brief
-	///Get the times, for testing
-	int getTimes();
-
-	///\brief
-	///Get the maxT, for testing
-	int getMaxT();
-
-	///\brief
-	///Get the next, for testing
-	int getNext();
 };
 
 #endif

@@ -36,7 +36,6 @@ void hx711::setGain(int gain){
 void hx711::powerOn(){									//turn the chip 'on' 
 	SCK.write(0);
 	hwlib::wait_us(1);									//wait 1 nano second to let the clock settle
-	on=true;
 }
 
 void hx711::powerDown(){								//power the chip down
@@ -78,13 +77,11 @@ unsigned long hx711::read(){							//get the data from the chip
 }
 
 void hx711::nextConver(){								//make the chip ready for the next conversion
-	next=0;
 	for(unsigned int j=0; j<GAIN; j++){					
 		SCK.write(1);
 		hwlib::wait_us(1);								//wait 1 nano second to let the clock settle
 		SCK.write(0);
 		hwlib::wait_us(1);								//wait 1 nano second to let the clock settle
-		next++;
 	}
 }
 
@@ -93,7 +90,9 @@ unsigned long hx711::readAvg(){							//Calculate an average over several measur
 	for(unsigned int k=0; k<times; k++){
 		avg+=read();
 	}
-	return avg/times;
+	int test = avg/times;
+	hwlib::cout<<"Avg: " << test;
+	return test;
 }
 
 void hx711::setTare(){									//set the tare with an average over several measurements
@@ -101,15 +100,15 @@ void hx711::setTare(){									//set the tare with an average over several measu
 	tare = readAvg();
 }
 
-int hx711::getOffset(){						//read the average over several measurements times minus the offset
+int hx711::getOffset(){									//read the average over several measurements times minus the offset
 	return readAvg() - tare;
 }
 
-float hx711::getWeight() {						//getData devided through the scale ('one gram')
+float hx711::getWeight() {								//getData devided through the scale ('one gram')
 	return getOffset()/scale;
 }
 
-void hx711::setScale(){									//set the scale (number thats '1 gram')
+void hx711::setScale(){									//set the scale (number thats '1 kilogram')
 	scale = getOffset()/calibrationWeight;
 }
 
@@ -123,34 +122,4 @@ void hx711::setTimes(int TIMES){						//set the times, default is 100
 
 void hx711::setMaxT(int MAXT){							//set the maximum tries, defualt is 500
 	maxT = MAXT;
-}
-
-//next code is for testing
-
-unsigned int hx711::getGain(){
-	return gain;
-}
-
-bool hx711::getOn(){
-	return on;
-}
-
-bool hx711::getReady(){
-	return ready;
-}
-
-float hx711::getCalWeight(){
-	return calibrationWeight;
-}
-
-int hx711::getTimes(){
-	return times;
-}
-
-int hx711::getMaxT(){
-	return maxT;
-}
-
-int hx711::getNext(){
-	return next;
 }

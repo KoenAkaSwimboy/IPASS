@@ -85,25 +85,25 @@ Collaboration diagram for weightscale:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af3fdbd1531f9a9e35e8ca02d52d5233d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweightscale.html#af3fdbd1531f9a9e35e8ca02d52d5233d">weightscale</a> (hwlib::pin_in_out &amp;DT, hwlib::pin_out &amp;SCK, hwlib::pin_in &amp;confirmSw, hwlib::pin_in &amp;startSw, int calWeight)</td></tr>
-<tr class="memdesc:af3fdbd1531f9a9e35e8ca02d52d5233d"><td class="mdescLeft">&#160;</td><td class="mdescRight">default constructor  <a href="#af3fdbd1531f9a9e35e8ca02d52d5233d">More...</a><br /></td></tr>
-<tr class="separator:af3fdbd1531f9a9e35e8ca02d52d5233d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37e3e26203e4036b76d2921dc7f3d25c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweightscale.html#a37e3e26203e4036b76d2921dc7f3d25c">calibrate</a> ()</td></tr>
-<tr class="memdesc:a37e3e26203e4036b76d2921dc7f3d25c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calibrate the weightscale.  <a href="#a37e3e26203e4036b76d2921dc7f3d25c">More...</a><br /></td></tr>
-<tr class="separator:a37e3e26203e4036b76d2921dc7f3d25c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ade4a94ff398976d4378d47bfa5a378"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweightscale.html#a8ade4a94ff398976d4378d47bfa5a378">getWeight</a> (int onegram)</td></tr>
-<tr class="memdesc:a8ade4a94ff398976d4378d47bfa5a378"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the weight in grams.  <a href="#a8ade4a94ff398976d4378d47bfa5a378">More...</a><br /></td></tr>
-<tr class="separator:a8ade4a94ff398976d4378d47bfa5a378"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc00962ffad1671326cf059bdbb3f684"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweightscale.html#acc00962ffad1671326cf059bdbb3f684">start</a> (bool firstTime)</td></tr>
-<tr class="memdesc:acc00962ffad1671326cf059bdbb3f684"><td class="mdescLeft">&#160;</td><td class="mdescRight">start the application  <a href="#acc00962ffad1671326cf059bdbb3f684">More...</a><br /></td></tr>
-<tr class="separator:acc00962ffad1671326cf059bdbb3f684"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d0086222cb067092a3c5f0ebd59cecb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweightscale.html#a9d0086222cb067092a3c5f0ebd59cecb">weightscale</a> (hwlib::pin_in &amp;DT, hwlib::pin_out &amp;SCK, hwlib::pin_in &amp;button, float calWeight, unsigned int times=100, int maxTries=1000)</td></tr>
+<tr class="memdesc:a9d0086222cb067092a3c5f0ebd59cecb"><td class="mdescLeft">&#160;</td><td class="mdescRight">default constructor  <a href="#a9d0086222cb067092a3c5f0ebd59cecb">More...</a><br /></td></tr>
+<tr class="separator:a9d0086222cb067092a3c5f0ebd59cecb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ba11d72b8488af4b25228ff21561dc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweightscale.html#a1ba11d72b8488af4b25228ff21561dc7">start</a> (int gain) override</td></tr>
+<tr class="memdesc:a1ba11d72b8488af4b25228ff21561dc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">start the application  <a href="#a1ba11d72b8488af4b25228ff21561dc7">More...</a><br /></td></tr>
+<tr class="separator:a1ba11d72b8488af4b25228ff21561dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3110537ecd03d645d30660f5dbd9435b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweightscale.html#a3110537ecd03d645d30660f5dbd9435b">calibrate</a> ()</td></tr>
+<tr class="memdesc:a3110537ecd03d645d30660f5dbd9435b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calibrate the weightscale.  <a href="#a3110537ecd03d645d30660f5dbd9435b">More...</a><br /></td></tr>
+<tr class="separator:a3110537ecd03d645d30660f5dbd9435b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ca1a617d9b677088fb45b8b621c6570"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classweightscale.html#a8ca1a617d9b677088fb45b8b621c6570">getWeight</a> () override</td></tr>
+<tr class="memdesc:a8ca1a617d9b677088fb45b8b621c6570"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the weight in kilograms.  <a href="#a8ca1a617d9b677088fb45b8b621c6570">More...</a><br /></td></tr>
+<tr class="separator:a8ca1a617d9b677088fb45b8b621c6570"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Weightscale. </p>
-<p>This a weightscale that gives back the number of grams that is on the physical weightscale. This class is a subclass of the <a class="el" href="classhx711.html" title="HX711. ">hx711</a> class. The avg, oneGram, confirmSw, startSw and calWeight components are private attributes. The appropiate constructers and functions are provided </p>
+<p>This is a weightscale that gives back the number of kilograms that is on the physical weightscale. This class is a subclass of the <a class="el" href="classhx711.html" title="HX711. ">hx711</a> class. The button, calWeight, maxTries, offset, Scale, gain and times components are private attributes. The appropriate constructers and functions are provided </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="af3fdbd1531f9a9e35e8ca02d52d5233d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af3fdbd1531f9a9e35e8ca02d52d5233d">&#9670;&nbsp;</a></span>weightscale()</h2>
+<a id="a9d0086222cb067092a3c5f0ebd59cecb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d0086222cb067092a3c5f0ebd59cecb">&#9670;&nbsp;</a></span>weightscale()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -111,7 +111,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">weightscale::weightscale </td>
           <td>(</td>
-          <td class="paramtype">hwlib::pin_in_out &amp;&#160;</td>
+          <td class="paramtype">hwlib::pin_in &amp;&#160;</td>
           <td class="paramname"><em>DT</em>, </td>
         </tr>
         <tr>
@@ -124,19 +124,25 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">hwlib::pin_in &amp;&#160;</td>
-          <td class="paramname"><em>confirmSw</em>, </td>
+          <td class="paramname"><em>button</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">hwlib::pin_in &amp;&#160;</td>
-          <td class="paramname"><em>startSw</em>, </td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>calWeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>times</em> = <code>100</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>calWeight</em>&#160;</td>
+          <td class="paramname"><em>maxTries</em> = <code>1000</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -147,19 +153,19 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>default constructor </p>
-<p>This constructor gives the DT en SCK to the class HX711 and initialize the confirmSw and startSw attributes as switches (pin_in) and initialize the calWeight attribute as an integer. </p>
+<p>This constructor gives the DT and SCK to the class HX711 and initialize the button attribute as a button (pin_in) and initialize the calWeight and maxT attributes as an integer and the times attribute as an unsigned integer. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a37e3e26203e4036b76d2921dc7f3d25c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a37e3e26203e4036b76d2921dc7f3d25c">&#9670;&nbsp;</a></span>calibrate()</h2>
+<a id="a3110537ecd03d645d30660f5dbd9435b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3110537ecd03d645d30660f5dbd9435b">&#9670;&nbsp;</a></span>calibrate()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int weightscale::calibrate </td>
+          <td class="memname">void weightscale::calibrate </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -168,49 +174,64 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Calibrate the weightscale. </p>
-<p>This function calibrates the weightscale, first it takes the average of 100 times of the current data from the HX711 chip and allocate this to avg. Then it asks the user to put the calibrate weight on the weightscale. Again it takes the avarage of 100 times of the current data from the HX711 chip and allocate this to oneGram. Next it takes avg out of oneGram to get the difference between the average of '0' gram and the calibrate weight. It divides this number by the calibrate weight in grams and returns this number. </p>
+<p>This function calibrates the weightscale, first it sets the tare weight. Then it asks the user to put the calibrate weight on the weightscale and press the button. When button is pressed the function gets the offset. After this it calculates the scale by dividing the given calWeight with the offset. Finally it sets the scale and stops. </p>
 
 </div>
 </div>
-<a id="a8ade4a94ff398976d4378d47bfa5a378"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ade4a94ff398976d4378d47bfa5a378">&#9670;&nbsp;</a></span>getWeight()</h2>
+<a id="a8ca1a617d9b677088fb45b8b621c6570"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ca1a617d9b677088fb45b8b621c6570">&#9670;&nbsp;</a></span>getWeight()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">long weightscale::getWeight </td>
+          <td class="memname">float weightscale::getWeight </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>onegram</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Get the weight in grams. </p>
-<p>This function takes the average of 25 times of the current data from the HX711 chip and devides this by oneGram to get the number of grams and returns this number. </p>
+<p>Return the weight in kilograms. </p>
+<p>Get the weight from the HX711 <a class="el" href="classweightscale.html#a8ca1a617d9b677088fb45b8b621c6570" title="Return the weight in kilograms. ">getWeight()</a> function. That function returns a float, hwlib::cout can't print a float so this function rounds up the numbers. </p>
 
 </div>
 </div>
-<a id="acc00962ffad1671326cf059bdbb3f684"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc00962ffad1671326cf059bdbb3f684">&#9670;&nbsp;</a></span>start()</h2>
+<a id="a1ba11d72b8488af4b25228ff21561dc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ba11d72b8488af4b25228ff21561dc7">&#9670;&nbsp;</a></span>start()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">long weightscale::start </td>
+          <td class="memname">void weightscale::start </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>firstTime</em></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>gain</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>start the application </p>
-<p>ask the user if its the first time starting the application if so the function checks if the start button is being pressed. When it is pressed, calibrate the weightscale. When this is done, check if the power button is pressed, if so return -1 and close the fuction. If not return getWeight. If it's not the firstime, just check if the power button is pressed, if so return -1 and if not return getWeight. </p>
+<p>This function does nothing until the button is pressed. When pressed, it starts the HX711 chip. After, it sets the amount of measurements and maximum of tries. Finally it calls the calibration function and stops. </p>
 
 </div>
 </div>

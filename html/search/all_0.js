@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['calibrate',['calibrate',['../classweightscale.html#a37e3e26203e4036b76d2921dc7f3d25c',1,'weightscale']]]
+  ['calibrate',['calibrate',['../classweightscale.html#a3110537ecd03d645d30660f5dbd9435b',1,'weightscale']]]
 ];

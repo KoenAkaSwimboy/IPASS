@@ -60,7 +60,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classhx711-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">hx711 Class Reference</div>  </div>
@@ -74,31 +73,73 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3676f13c54b3a63e36390fe48eb24b91"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#a3676f13c54b3a63e36390fe48eb24b91">hx711</a> (hwlib::pin_in_out &amp;DT, hwlib::pin_out &amp;SCK)</td></tr>
-<tr class="memdesc:a3676f13c54b3a63e36390fe48eb24b91"><td class="mdescLeft">&#160;</td><td class="mdescRight">default constructor  <a href="#a3676f13c54b3a63e36390fe48eb24b91">More...</a><br /></td></tr>
-<tr class="separator:a3676f13c54b3a63e36390fe48eb24b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1d55443d9cd3d4250c48a7fcd2fac09"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#ad1d55443d9cd3d4250c48a7fcd2fac09">readCount</a> (void)</td></tr>
-<tr class="memdesc:ad1d55443d9cd3d4250c48a7fcd2fac09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the data from the chip.  <a href="#ad1d55443d9cd3d4250c48a7fcd2fac09">More...</a><br /></td></tr>
-<tr class="separator:ad1d55443d9cd3d4250c48a7fcd2fac09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:a0bd9a837c0fc4a0b132f428ef721e749"><td class="memItemLeft" align="right" valign="top"><a id="a0bd9a837c0fc4a0b132f428ef721e749"></a>
-unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>Count</b></td></tr>
-<tr class="separator:a0bd9a837c0fc4a0b132f428ef721e749"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0778c016e210a13294deda11ddd2caed"><td class="memItemLeft" align="right" valign="top"><a id="a0778c016e210a13294deda11ddd2caed"></a>
-hwlib::pin_in_out &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>DT</b></td></tr>
-<tr class="separator:a0778c016e210a13294deda11ddd2caed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c193bacb6ee392981e3fe9b3e8e2264"><td class="memItemLeft" align="right" valign="top"><a id="a4c193bacb6ee392981e3fe9b3e8e2264"></a>
-hwlib::pin_out &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>SCK</b></td></tr>
-<tr class="separator:a4c193bacb6ee392981e3fe9b3e8e2264"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6665f2fb7a4d9e98662c24ede7c5ddab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#a6665f2fb7a4d9e98662c24ede7c5ddab">hx711</a> (hwlib::pin_in &amp;DT, hwlib::pin_out &amp;SCK)</td></tr>
+<tr class="memdesc:a6665f2fb7a4d9e98662c24ede7c5ddab"><td class="mdescLeft">&#160;</td><td class="mdescRight">default constructor  <a href="#a6665f2fb7a4d9e98662c24ede7c5ddab">More...</a><br /></td></tr>
+<tr class="separator:a6665f2fb7a4d9e98662c24ede7c5ddab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2adbffceb80c1db7f8af74258df7c2fc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#a2adbffceb80c1db7f8af74258df7c2fc">isReady</a> ()</td></tr>
+<tr class="memdesc:a2adbffceb80c1db7f8af74258df7c2fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the chip is ready for retrieval.  <a href="#a2adbffceb80c1db7f8af74258df7c2fc">More...</a><br /></td></tr>
+<tr class="separator:a2adbffceb80c1db7f8af74258df7c2fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb10f4013105b960ce07e52d6cefea06"><td class="memItemLeft" align="right" valign="top"><a id="abb10f4013105b960ce07e52d6cefea06"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#abb10f4013105b960ce07e52d6cefea06">waitReady</a> ()</td></tr>
+<tr class="memdesc:abb10f4013105b960ce07e52d6cefea06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait till the chip is ready for retrieval. <br /></td></tr>
+<tr class="separator:abb10f4013105b960ce07e52d6cefea06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaaa5d42da78c5db98f98ce3f6e6cc55"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#aeaaa5d42da78c5db98f98ce3f6e6cc55">setGain</a> (int gain)</td></tr>
+<tr class="memdesc:aeaaa5d42da78c5db98f98ce3f6e6cc55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the gain.  <a href="#aeaaa5d42da78c5db98f98ce3f6e6cc55">More...</a><br /></td></tr>
+<tr class="separator:aeaaa5d42da78c5db98f98ce3f6e6cc55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab22b06484907dc75d4115e7065977c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#aab22b06484907dc75d4115e7065977c0">powerOn</a> ()</td></tr>
+<tr class="memdesc:aab22b06484907dc75d4115e7065977c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power the chip.  <a href="#aab22b06484907dc75d4115e7065977c0">More...</a><br /></td></tr>
+<tr class="separator:aab22b06484907dc75d4115e7065977c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3089898e9aad597a5d985ce2f8a9f5b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#a3089898e9aad597a5d985ce2f8a9f5b8">powerDown</a> ()</td></tr>
+<tr class="memdesc:a3089898e9aad597a5d985ce2f8a9f5b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power the chip down.  <a href="#a3089898e9aad597a5d985ce2f8a9f5b8">More...</a><br /></td></tr>
+<tr class="separator:a3089898e9aad597a5d985ce2f8a9f5b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f9adaee6d128aec8ac6b9016f403203"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#a2f9adaee6d128aec8ac6b9016f403203">start</a> ()</td></tr>
+<tr class="memdesc:a2f9adaee6d128aec8ac6b9016f403203"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the chip.  <a href="#a2f9adaee6d128aec8ac6b9016f403203">More...</a><br /></td></tr>
+<tr class="separator:a2f9adaee6d128aec8ac6b9016f403203"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee8f8962d06e50888aa6f689c8d5fff2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#aee8f8962d06e50888aa6f689c8d5fff2">start</a> (int gain)</td></tr>
+<tr class="memdesc:aee8f8962d06e50888aa6f689c8d5fff2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the chip.  <a href="#aee8f8962d06e50888aa6f689c8d5fff2">More...</a><br /></td></tr>
+<tr class="separator:aee8f8962d06e50888aa6f689c8d5fff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dc85e1232264d571512f75b6bad90d5"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#a5dc85e1232264d571512f75b6bad90d5">read</a> ()</td></tr>
+<tr class="memdesc:a5dc85e1232264d571512f75b6bad90d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the data from the chip.  <a href="#a5dc85e1232264d571512f75b6bad90d5">More...</a><br /></td></tr>
+<tr class="separator:a5dc85e1232264d571512f75b6bad90d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf28a62a6d06f522614694ab4df96f3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#adf28a62a6d06f522614694ab4df96f3f">nextConver</a> ()</td></tr>
+<tr class="memdesc:adf28a62a6d06f522614694ab4df96f3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make the chip ready for the next conversion.  <a href="#adf28a62a6d06f522614694ab4df96f3f">More...</a><br /></td></tr>
+<tr class="separator:adf28a62a6d06f522614694ab4df96f3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adba17783420dfd33e3354c259c0849a4"><td class="memItemLeft" align="right" valign="top"><a id="adba17783420dfd33e3354c259c0849a4"></a>
+unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#adba17783420dfd33e3354c259c0849a4">readAvg</a> ()</td></tr>
+<tr class="memdesc:adba17783420dfd33e3354c259c0849a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate an average of several measurements. <br /></td></tr>
+<tr class="separator:adba17783420dfd33e3354c259c0849a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e40d399e913785d6e7fe7f247c6fe2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#a5e40d399e913785d6e7fe7f247c6fe2a">setTare</a> ()</td></tr>
+<tr class="memdesc:a5e40d399e913785d6e7fe7f247c6fe2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the tare.  <a href="#a5e40d399e913785d6e7fe7f247c6fe2a">More...</a><br /></td></tr>
+<tr class="separator:a5e40d399e913785d6e7fe7f247c6fe2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabfa5988bb6dd2e9110055ccd0064304"><td class="memItemLeft" align="right" valign="top"><a id="aabfa5988bb6dd2e9110055ccd0064304"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#aabfa5988bb6dd2e9110055ccd0064304">getOffset</a> ()</td></tr>
+<tr class="memdesc:aabfa5988bb6dd2e9110055ccd0064304"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the average of several measurments minus the offset. <br /></td></tr>
+<tr class="separator:aabfa5988bb6dd2e9110055ccd0064304"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab48ca212b0d0afb494e3f2fcbefa3985"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#ab48ca212b0d0afb494e3f2fcbefa3985">getWeight</a> ()</td></tr>
+<tr class="memdesc:ab48ca212b0d0afb494e3f2fcbefa3985"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the weight in grams.  <a href="#ab48ca212b0d0afb494e3f2fcbefa3985">More...</a><br /></td></tr>
+<tr class="separator:ab48ca212b0d0afb494e3f2fcbefa3985"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a837e9ae5cc8d8f22281e2e43be139606"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#a837e9ae5cc8d8f22281e2e43be139606">setScale</a> ()</td></tr>
+<tr class="memdesc:a837e9ae5cc8d8f22281e2e43be139606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the scale.  <a href="#a837e9ae5cc8d8f22281e2e43be139606">More...</a><br /></td></tr>
+<tr class="separator:a837e9ae5cc8d8f22281e2e43be139606"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8ccb8783476e82401824e937735f9d2"><td class="memItemLeft" align="right" valign="top"><a id="ac8ccb8783476e82401824e937735f9d2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#ac8ccb8783476e82401824e937735f9d2">setCalibrationW</a> (float calWeight)</td></tr>
+<tr class="memdesc:ac8ccb8783476e82401824e937735f9d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the calibration weight. <br /></td></tr>
+<tr class="separator:ac8ccb8783476e82401824e937735f9d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae35d76b171adff7570a431116d4f5810"><td class="memItemLeft" align="right" valign="top"><a id="ae35d76b171adff7570a431116d4f5810"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#ae35d76b171adff7570a431116d4f5810">setTimes</a> (int TIMES)</td></tr>
+<tr class="memdesc:ae35d76b171adff7570a431116d4f5810"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the amount of measurements. <br /></td></tr>
+<tr class="separator:ae35d76b171adff7570a431116d4f5810"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6225c6fc0c76e0f1008c9500379f78b4"><td class="memItemLeft" align="right" valign="top"><a id="a6225c6fc0c76e0f1008c9500379f78b4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhx711.html#a6225c6fc0c76e0f1008c9500379f78b4">setMaxT</a> (int MAXT)</td></tr>
+<tr class="memdesc:a6225c6fc0c76e0f1008c9500379f78b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the maximum amount of tries. <br /></td></tr>
+<tr class="separator:a6225c6fc0c76e0f1008c9500379f78b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>HX711. </p>
-<p>HX711 returns the data from the chip. The Count, DT and SCK components are protected attributes HX711 is the supperclass of weightscale). The appropiate constructers and functions are provided </p>
+<p>HX711 returns the data from the chip. The gain, GAIN, tries, maxT, Data, DT, SCK, times, avg, tare, calWeight and scale components are private attributes. The appropiate constructers and functions are provided </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a3676f13c54b3a63e36390fe48eb24b91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3676f13c54b3a63e36390fe48eb24b91">&#9670;&nbsp;</a></span>hx711()</h2>
+<a id="a6665f2fb7a4d9e98662c24ede7c5ddab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6665f2fb7a4d9e98662c24ede7c5ddab">&#9670;&nbsp;</a></span>hx711()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -106,7 +147,7 @@ hwlib::pin_out &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>SCK</
         <tr>
           <td class="memname">hx711::hx711 </td>
           <td>(</td>
-          <td class="paramtype">hwlib::pin_in_out &amp;&#160;</td>
+          <td class="paramtype">hwlib::pin_in &amp;&#160;</td>
           <td class="paramname"><em>DT</em>, </td>
         </tr>
         <tr>
@@ -124,21 +165,128 @@ hwlib::pin_out &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>SCK</
 </div><div class="memdoc">
 
 <p>default constructor </p>
-<p>This consturctor initialize the DT attribute as an output and input (pin_in_out) and the SCK attribute as an output (pin_out). </p>
+<p>This constructor initializes the DT attribute as an input (pin_in) and the SCK attribute as an output (pin_out). </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad1d55443d9cd3d4250c48a7fcd2fac09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad1d55443d9cd3d4250c48a7fcd2fac09">&#9670;&nbsp;</a></span>readCount()</h2>
+<a id="ab48ca212b0d0afb494e3f2fcbefa3985"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab48ca212b0d0afb494e3f2fcbefa3985">&#9670;&nbsp;</a></span>getWeight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float hx711::getWeight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the weight in grams. </p>
+<p>This function returns the weight in grams. It takes the offset and devides it through the scale to get the right amount of grams. </p>
+
+</div>
+</div>
+<a id="a2adbffceb80c1db7f8af74258df7c2fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2adbffceb80c1db7f8af74258df7c2fc">&#9670;&nbsp;</a></span>isReady()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned long hx711::readCount </td>
+          <td class="memname">bool hx711::isReady </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if the chip is ready for retrieval. </p>
+<p>The chip is ready for retrieval when the data pin is low, see datasheet. </p>
+
+</div>
+</div>
+<a id="adf28a62a6d06f522614694ab4df96f3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf28a62a6d06f522614694ab4df96f3f">&#9670;&nbsp;</a></span>nextConver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hx711::nextConver </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Make the chip ready for the next conversion. </p>
+<p>Depending on the gain, the clock gets a certain amount of pulses to make the chip ready for the next conversion. see the datasheet for more information. </p>
+
+</div>
+</div>
+<a id="a3089898e9aad597a5d985ce2f8a9f5b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3089898e9aad597a5d985ce2f8a9f5b8">&#9670;&nbsp;</a></span>powerDown()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hx711::powerDown </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Power the chip down. </p>
+<p>By pulsing the clock one time, the chip enters a power down mode </p>
+
+</div>
+</div>
+<a id="aab22b06484907dc75d4115e7065977c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab22b06484907dc75d4115e7065977c0">&#9670;&nbsp;</a></span>powerOn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hx711::powerOn </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Power the chip. </p>
+<p>To turn the chip on, SCK pin must be low, see datasheet </p>
+
+</div>
+</div>
+<a id="a5dc85e1232264d571512f75b6bad90d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dc85e1232264d571512f75b6bad90d5">&#9670;&nbsp;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long hx711::read </td>
+          <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -146,7 +294,125 @@ hwlib::pin_out &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>SCK</
 </div><div class="memdoc">
 
 <p>Get the data from the chip. </p>
-<p>This function gets the data from the chip. The function sets DT (Data pin) as an output and sets it to 1 and the SCK to 0. After this it sets DT as an input, it sets Count to 0 to make sure there isn't a random value in Count. While DT is 1, pulse the clock 24 times to read the data. Return the data. this code is from the datasheet of the HX711 chip. </p>
+<p>First this function checks if the chip is ready for retrieval if so, for 24 times the data is shifted out. Each SCK pulse shifts out one bit, for more information see the datasheet. When the data is shifted out, the function calls <a class="el" href="classhx711.html#adf28a62a6d06f522614694ab4df96f3f" title="Make the chip ready for the next conversion. ">nextConver()</a> to make the chip ready for the next conversion. </p>
+
+</div>
+</div>
+<a id="aeaaa5d42da78c5db98f98ce3f6e6cc55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeaaa5d42da78c5db98f98ce3f6e6cc55">&#9670;&nbsp;</a></span>setGain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hx711::setGain </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>gain</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the gain. </p>
+<p>With every gain there is a certain amount of pulses the clock should give, see the datasheet. </p>
+
+</div>
+</div>
+<a id="a837e9ae5cc8d8f22281e2e43be139606"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a837e9ae5cc8d8f22281e2e43be139606">&#9670;&nbsp;</a></span>setScale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hx711::setScale </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the scale. </p>
+<p>The scale is the value that is 'one kilogram'. You can get this by dividing the offset through the calibration weight. </p>
+
+</div>
+</div>
+<a id="a5e40d399e913785d6e7fe7f247c6fe2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e40d399e913785d6e7fe7f247c6fe2a">&#9670;&nbsp;</a></span>setTare()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hx711::setTare </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the tare. </p>
+<p>Take the average of several measurements and set this as the tare </p>
+
+</div>
+</div>
+<a id="a2f9adaee6d128aec8ac6b9016f403203"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f9adaee6d128aec8ac6b9016f403203">&#9670;&nbsp;</a></span>start() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hx711::start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Start the chip. </p>
+<p>First set the gain to 128, then turn the chip on. </p>
+
+</div>
+</div>
+<a id="aee8f8962d06e50888aa6f689c8d5fff2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee8f8962d06e50888aa6f689c8d5fff2">&#9670;&nbsp;</a></span>start() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hx711::start </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>gain</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Start the chip. </p>
+<p>First set the gain, then turn the chip on. </p>
 
 </div>
 </div>

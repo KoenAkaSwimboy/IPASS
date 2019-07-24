@@ -9,7 +9,7 @@
 #############################################################################
 
 # source files in this project (main.cpp is automatically assumed)
-SOURCES := hx711.cpp weightscale.cpp
+SOURCES := hx711.cpp weightscale.cpp HX711testcode.cpp
 
 # header files in this project
 HEADERS := hx711.hpp weightscale.hpp
