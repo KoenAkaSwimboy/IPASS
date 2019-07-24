@@ -38,7 +38,7 @@ public:
 	///default constructor 
 	///\details
 	///This consturctor initialize the DT attribute as
-	///an output and input (pin_in) and the SCK
+	///an input (pin_in) and the SCK
 	///attribute as an output (pin_out).
 	hx711(hwlib::pin_in & DT, hwlib::pin_out & SCK);
 
@@ -73,6 +73,10 @@ public:
 	////see datasheet.
 	void powerDown();
 
+	///\brief
+	///Start the chip
+	///\details
+	///First set the gain to 128, then turn the chip on.
 	virtual void start();
 
 	///\brief

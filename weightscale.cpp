@@ -24,7 +24,7 @@ void weightscale::start(int gain){				//override the start function
 
 void weightscale::calibrate(){
 	WEIGHTSCALE.setTare();						//set the tare
-	hwlib::cout<<"Please put " << calWeight << " gram on the weightscale and press the calibration button \n";
+	hwlib::cout<<"Please put " << calWeight << " kilogram on the weightscale and press the calibration button \n";
 	while(calibrationSw.read());				//wait till the calibration button is pressed (pull down switch)
 	hwlib::cout<<"Calibrating... \n";
 	WEIGHTSCALE.setScale();

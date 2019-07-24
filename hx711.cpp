@@ -93,6 +93,7 @@ unsigned long hx711::readAvg(){							//Calculate an average over several measur
 	for(unsigned int k=0; k<times; k++){
 		avg+=read();
 	}
+	hwlib::cout<<" Avg: " << avg/times<< ' ';
 	return avg/times;
 }
 
